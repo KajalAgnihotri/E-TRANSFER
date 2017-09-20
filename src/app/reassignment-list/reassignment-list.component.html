@@ -1,0 +1,50 @@
+<div *ngIf ="assetList">
+<div class="container">
+<div class="jumbotron">
+  <div class="mb-5">
+    <div class="card-block" > <h5> Employee ID: {{request.employeecode}}</h5><br>
+       
+      <table class="table table-hover table-definition mb-5" >
+          
+        <thead class="table-inverse">    
+            <tr >
+          <tr class="head" > 
+
+            <th class="text-color text-center">Asset-Code</th>
+            <th class="text-color text-center">Cap_Date</th>
+            <th class="text-color text-center"> Description</th>
+            <th class="text-color text-center"> Company Code</th>
+            <th class="text-color text-center"> Location </th>
+            <th class="text-color text-center">Quantity</th>
+            <th class="text-color text-center"> Re-assign To</th> 
+          </tr>
+        </thead>      
+          <tr *ngFor ="let list of assetList" >            
+                  <td class="text-center"> {{list.assetCode}}</td>
+                 <td class="text-center"> {{list.capitalisationDate}}</td>
+                  <td class="text-center" >{{list.description}}</td>
+                  <td class="text-center" >{{list.companyCode}}</td>
+                  <td class="text-center" >{{list.location}}</td>
+                  <td class="text-center" >{{list.quantity}}</td>
+                  <td class="text-center">
+                      <input #mysearch id="{{list.assetCode}}"  (keyup)="search(mysearch.value)" />
+                      <div>
+                          <div *ngFor="let hero of mylistofemployee"
+                               (click)="gotoDetail(hero)" class="search-result" >
+                            {{hero}}
+                          </div>
+                        </div>
+                  </td>         
+            </tr>
+            <tr> 
+              <td><button class="btn btn-primary" (click)="GenrateRequest()">GenerateRequest</button></td>
+              <td><button type="button" class="btn btn-danger" data-dismiss="modal">Close</button></td>
+              </tr>
+            
+            </table>
+           
+            </div>
+          </div>
+          </div>
+          </div>
+          </div>

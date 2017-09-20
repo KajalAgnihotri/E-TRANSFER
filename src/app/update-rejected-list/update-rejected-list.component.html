@@ -1,0 +1,97 @@
+
+<div *ngIf="myrejectedrequest">
+<div class="container border">
+	<h2 class="text-center">Update Request Details:</h2>
+	<hr>
+	<br>
+	<form class="container" name="form">
+		<div>
+			<div class="row"> 
+				<div class="col form-group">
+					<div class="row">
+						<label class="col-sm-4 col-form-label"><h6>Request Id</h6></label>
+						<input type="text" value = {{myrejectedrequest.requestId}} class="col-sm-8 form-control form-control-primary" placeholder="Employee Id">
+					</div>
+				</div>
+				<div class="col form-group">
+					<div class="row">
+						<label class="col-sm-4 col-form-label"><h6>Employee code</h6></label>
+						<input type="text" value= {{myrejectedrequest.employeeCode}} class="col-sm-8 form-control" placeholder="Employee name">
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col form-group">
+					<div class="row">
+						<label class="col-sm-4 col-form-label"><h6>Supervisorcode</h6></label>
+						<input type="email" value= {{myrejectedrequest.supervisorCode}} class="col-sm-8 form-control" placeholder="supervisorcode">
+					</div>
+				</div>
+				<div class="col form-group">
+					<div class="row">
+						<label class="col-sm-4 col-form-label"><h6>Date of Request</h6></label>
+						<input type="text" value= {{myrejectedrequest.dateOfRequest|date}} class="col-sm-8 form-control" placeholder="Location">
+					</div>
+				</div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col"></div>
+				<div class="col-5 form-group">
+					<div class="col text-center"><h5>Type Of Request</h5></div>
+					<br>
+					<select class="col custom-select form-control" [(ngModel)]="category" name="choice" id="choice" onchange="inputfieldsenabled()" (click)="defaultvalue()" required>
+							<option value="undefined" disabled selected hidden>Select Your Choice</option>
+							<option  *ngFor="let category of MyList " [ngValue]="category">{{category}}</option>
+						</select>
+				</div>
+				<div class="col"></div>
+			</div>
+			<hr>
+			<div class="row">
+				
+				<div class="col form-group">
+					<div><h5 class="text-center">New Details</h5></div>
+					<br>
+					<div class="row">
+							<div class="col"></div>
+							<label class="col col-form-label"><h6>PA</h6></label>
+							<input type="text" name="PA" [(ngModel)] = "newpa"  value= {{newpa}} [ngModelOptions]="{standalone: true}" class="col form-control form-control-primary" placeholder="PA" required disabled>
+							<div class="col"></div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col"></div>
+							<label class="col col-form-label"><h6>PSA</h6></label>
+							<input type="text" name="PSA" [(ngModel)] = "newpsa" value = {{newpsa}} [ngModelOptions]="{standalone: true}" class="col form-control form-control-primary" placeholder="PSA" required disabled>
+							<div class="col"></div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col"></div>
+							<label class="col col-form-label"><h6>OU</h6></label>
+							<input type="text" name="OU" [(ngModel)] = "newou" value = {{newou}} [ngModelOptions]="{standalone: true}" class="col form-control form-control-primary" placeholder="OU" required disabled>
+							<div class="col"></div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col"></div>
+							<label class="col col-form-label"><h6>CC</h6></label>
+							<input type="text" name="CC" [(ngModel)] = "newcc" value = {{newcc}} [ngModelOptions]="{standalone: true}" class="col form-control form-control-primary" placeholder="CC" required disabled>
+							<div class="col"></div>
+						</div>
+				</div>
+			</div>
+			<hr>
+			<br>
+			<div class="clearfix"></div>
+			<div class="row">
+				<div class="col"></div>
+				<button type="submit" class="col-4 btn btn-primary btn-md btn-block btn-responsive" (click)="update()">Update</button>
+				<div class="col"></div>
+			</div>
+		</div>
+		<br>
+	</form>
+</div>

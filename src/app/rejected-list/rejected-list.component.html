@@ -1,0 +1,43 @@
+
+<div>
+    <div class="jumbotron">
+      <div class="card-block">
+        <table class="table table-striped table-hover table-sm m-0">
+          <thead class="table-inverse">
+            <tr class="head">
+              <th class="text-color text-center">Asset-ID</th>
+              <th class="text-color text-center">Asset Code</th>
+              <th class="text-color text-center"> Current-HolderID</th>
+              <th class="text-color text-center"> Current-Company-Code</th>
+              <th class="text-color text-center">Rejected by</th>
+              <th class="text-color text-center">Re-Assign To</th>
+              <th class="text-color text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let list of myrejectedassetlist">              
+                  <td class="text-center"> {{list.assetId}}</td>
+                 <td class="text-center"> {{list.assetCode}}</td>
+                  <td class="text-center" >
+                    {{list.employeeCode}}
+                  </td>
+                  <td class="text-center">
+                    {{list.companyCode}}
+                  </td>
+                  <td class="text-center" >
+                      {{list.assignedTo}}
+                    </td>
+                  <td class="text-center">
+                      <input class=""  [(ngModel)]= "list.assignedto" placeholder="Vijay" />
+                  </td>
+                
+              <td>
+              <button type="button" class="btn btn-md btn-success" (click)= "reassign(list)" data-toggle="tooltip" data-placement="top" title="Re-assign This Request">Re-assign  <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></button></td>
+           
+            </tr>                         
+                </tbody>
+              
+              </table>
+              </div>
+            </div>
+            </div>

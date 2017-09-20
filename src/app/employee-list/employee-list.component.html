@@ -1,0 +1,37 @@
+
+<div class="container pt-5">
+    <div class="card mb-5">
+      <div class="card-block p-0">
+        <table class="table table-hover table-striped table-sm m-0">
+          <thead class="head table-inverse">
+            <tr>
+              <th>Employee ID</th>
+              <th>Employee Name</th>
+              <th>Location</th>
+              <th>OU Code</th>
+              <th>PA Code</th>
+              <th>PSA Code</th>
+              <th>CC Code</th>
+              <th>Designation</th>
+              <th>Date Of Transfer</th>
+              <th>E-Transfer</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let list of employees ">
+              <td>{{list.employeeCode}}</td>
+              <td>{{list.employeeName|titlecase}}</td>
+              <td>{{list.location|titlecase}}</td>
+              <td>{{list.ouCode}}</td>
+              <td>{{list.pacode}}</td>
+              <td>{{list.psacode}}</td>
+              <td>{{list.ccCode}}</td>
+              <td>{{list.designation|titlecase}}</td>
+              <td>{{list.dateofTransfer|date:"dd/MM/yyyy"}}</td>
+              <td><button type="button" class="btn  btn-outline-primary" (click)="sendInfo(list)">Initiate transfer <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

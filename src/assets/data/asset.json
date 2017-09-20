@@ -1,0 +1,392 @@
+[{
+
+    "assetCode": 9877,
+    "employeeCode": 12156959, 
+    "companyCode": 34754,
+    "description": "laptop",
+    "quantity": 1,
+    "location": "delhi",
+    "capitalisationDate": "12/03/2017",
+    "assetStatus": "pending",
+    "assigntoEmailId": "er.alruba2017@gmail.com",
+    "assignedto":193503
+},
+{
+
+    "assetCode": 9876,
+    "employeeCode": 12156959,  
+    "companyCode": 34754,
+    "description": "mobile",
+    "quantity": 1,
+    "location": "delhi",
+    "capitalisationDate": "12/03/2017",
+    "assetStatus": "pending",
+    "assigntoEmailId": "paporidutta23@gmail.com",
+    "assignedto":193503
+},
+{
+
+    "assetCode": 9878,
+    "employeeCode": 12156959, 
+    "companyCode": 34754,
+    "description": "desktop",
+    "quantity": 1,
+    "location": "delhi",
+    "capitalisationDate": "10/03/2017",
+    "assetStatus": "pending",
+    "assigntoEmailId": "destroyer5191445@gmail.com",
+    "assignedto":193503
+},
+{
+
+    "assetCode": 9877,
+    "employeeCode": 12156959,  
+    "companyCode": 34754,
+    "description": "laptop",
+    "quantity": 1,
+    "location": "delhi",
+    "capitalisationDate": "12/03/2017",
+    "assetStatus": "pending",
+    "assigntoEmailId": "tripathiishu16@gmail.com",
+    "assignedto":193503
+},
+{
+   
+    "assetCode": 9877,
+    "employeeCode": 12156959, 
+    "companyCode": 34754,
+    "description": "laptop",
+    "quantity": 1,
+    "location": "delhi",
+    "capitalisationDate": "18/03/2017",
+    "assetStatus": "pending",
+    "assigntoEmailId": "dhirubhai5191445@gmail.com",
+    "assignedto":193503
+},
+{
+  
+    "assetCode": 9877,
+    "employeeCode": 12156959,   
+    "companyCode": 34754,
+    "description": "laptop",
+    "quantity": 1,
+    "location": "delhi",
+    "capitalisationDate": "12/03/2017",
+    "assetStatus": "pending",
+    "assigntoEmailId": "dhiru5191445@gmail.com",
+    "assignedto":193503
+},
+{
+   
+    "assetCode": 9876,
+    "employeeCode": 12156959,
+    "companyCode": 34754,
+    "description": "mobile",
+    "quantity": 1,
+    "location": "delhi",
+    "capitalisationDate": "14/03/2017",
+    "assetStatus": "pending",
+    "assigntoEmailId": "sharmakajal10@gmail.com",
+    "assignedto":193503
+},
+{
+
+    "assetCode": 9878,
+    "employeeCode": 12156959,
+    "companyCode": 34754,
+    "description": "desktop",
+    "quantity": 1,
+    "location": "delhi",
+    "capitalisationDate": "12/03/2017",
+    "assetStatus": "pending",
+    "assigntoEmailId": "lakshyamathur20@gmail.com",
+    "assignedto":193503
+},
+{
+  
+    "assetCode": 9877,
+    "employeeCode": 12156959, 
+    "companyCode": 34754,
+    "description": "laptop",
+    "quantity": 1,
+    "location": "delhi",
+    "capitalisationDate": "12/03/2017",
+    "assetStatus": "pending",
+    "assigntoEmailId": "kewaleparam0204@gmail.com",
+    "assignedto":193503
+},
+{
+  
+    "assetCode": 9878,
+    "employeeCode": 12156959, 
+    "companyCode": 34754,
+    "description": "desktop",
+    "quantity": 1,
+    "location": "delhi",
+    "capitalisationDate": "18/03/2017",
+    "assetStatus": "pending",
+    "assigntoEmailId": "kewaleparam0204@gmail.com",
+    "assignedto":193503
+},
+{
+  
+    "assetCode": 9877,
+    "employeeCode": 12156908, 
+    "companyCode": 34754,
+    "description": "laptop",
+    "quantity": 1,
+    "location": "delhi",
+    "capitalisationDate": "12/03/2017",
+    "assetStatus": "pending",
+    "assigntoEmailId": "kewaleparam0204@gmail.com",
+    "assignedto":193503
+},
+{
+  
+    "assetCode": 9878,
+    "employeeCode": 12156908, 
+    "companyCode": 34754,
+    "description": "desktop",
+    "quantity": 1,
+    "location": "delhi",
+    "capitalisationDate": "18/03/2017",
+    "assetStatus": "pending",
+    "assigntoEmailId": "kewaleparam0204@gmail.com",
+    "assignedto":193503
+}
+,
+{
+  
+    "assetCode": 9877,
+    "employeeCode": 12156955, 
+    "companyCode": 34754,
+    "description": "laptop",
+    "quantity": 1,
+    "location": "delhi",
+    "capitalisationDate": "12/03/2017",
+    "assetStatus": "pending",
+    "assigntoEmailId": "kewaleparam0204@gmail.com",
+    "assignedto":193503
+},
+{
+  
+    "assetCode": 9878,
+    "employeeCode": 12156955, 
+    "companyCode": 34754,
+    "description": "desktop",
+    "quantity": 1,
+    "location": "delhi",
+    "capitalisationDate": "18/03/2017",
+    "assetStatus": "pending",
+    "assigntoEmailId": "kewaleparam0204@gmail.com",
+    "assignedto":193503
+},
+{
+  
+    "assetCode": 9877,
+    "employeeCode": 12156956, 
+    "companyCode": 34754,
+    "description": "laptop",
+    "quantity": 1,
+    "location": "delhi",
+    "capitalisationDate": "12/03/2017",
+    "assetStatus": "pending",
+    "assigntoEmailId": "kewaleparam0204@gmail.com",
+    "assignedto":193503
+},
+{
+  
+    "assetCode": 9878,
+    "employeeCode": 12156956, 
+    "companyCode": 34754,
+    "description": "desktop",
+    "quantity": 1,
+    "location": "delhi",
+    "capitalisationDate": "18/03/2017",
+    "assetStatus": "pending",
+    "assigntoEmailId": "kewaleparam0204@gmail.com",
+    "assignedto":193503
+},
+{
+  
+    "assetCode": 9877,
+    "employeeCode": 12156957, 
+    "companyCode": 34754,
+    "description": "laptop",
+    "quantity": 1,
+    "location": "delhi",
+    "capitalisationDate": "12/03/2017",
+    "assetStatus": "pending",
+    "assigntoEmailId": "kewaleparam0204@gmail.com",
+    "assignedto":193503
+},
+{
+  
+    "assetCode": 9878,
+    "employeeCode": 12156957, 
+    "companyCode": 34754,
+    "description": "desktop",
+    "quantity": 1,
+    "location": "delhi",
+    "capitalisationDate": "18/03/2017",
+    "assetStatus": "pending",
+    "assigntoEmailId": "kewaleparam0204@gmail.com",
+    "assignedto":193503
+},
+{
+  
+    "assetCode": 9877,
+    "employeeCode": 12156958, 
+    "companyCode": 34754,
+    "description": "laptop",
+    "quantity": 1,
+    "location": "delhi",
+    "capitalisationDate": "12/03/2017",
+    "assetStatus": "pending",
+    "assigntoEmailId": "kewaleparam0204@gmail.com",
+    "assignedto":193503
+},
+{
+  
+    "assetCode": 9878,
+    "employeeCode": 12156958, 
+    "companyCode": 34754,
+    "description": "desktop",
+    "quantity": 1,
+    "location": "delhi",
+    "capitalisationDate": "18/03/2017",
+    "assetStatus": "pending",
+    "assigntoEmailId": "kewaleparam0204@gmail.com",
+    "assignedto":193503
+},
+{
+  
+    "assetCode": 9877,
+    "employeeCode": 12156960, 
+    "companyCode": 34754,
+    "description": "laptop",
+    "quantity": 1,
+    "location": "delhi",
+    "capitalisationDate": "12/03/2017",
+    "assetStatus": "pending",
+    "assigntoEmailId": "kewaleparam0204@gmail.com",
+    "assignedto":193503
+},
+{
+  
+    "assetCode": 9878,
+    "employeeCode": 12156960, 
+    "companyCode": 34754,
+    "description": "desktop",
+    "quantity": 1,
+    "location": "delhi",
+    "capitalisationDate": "18/03/2017",
+    "assetStatus": "pending",
+    "assigntoEmailId": "kewaleparam0204@gmail.com",
+    "assignedto":193503
+},
+{
+  
+    "assetCode": 9877,
+    "employeeCode": 12156961, 
+    "companyCode": 34754,
+    "description": "laptop",
+    "quantity": 1,
+    "location": "delhi",
+    "capitalisationDate": "12/03/2017",
+    "assetStatus": "pending",
+    "assigntoEmailId": "kewaleparam0204@gmail.com",
+    "assignedto":193503
+},
+{
+  
+    "assetCode": 9878,
+    "employeeCode": 12156961, 
+    "companyCode": 34754,
+    "description": "desktop",
+    "quantity": 1,
+    "location": "delhi",
+    "capitalisationDate": "18/03/2017",
+    "assetStatus": "pending",
+    "assigntoEmailId": "kewaleparam0204@gmail.com",
+    "assignedto":193503
+},
+{
+  
+    "assetCode": 9877,
+    "employeeCode": 12156962, 
+    "companyCode": 34754,
+    "description": "laptop",
+    "quantity": 1,
+    "location": "delhi",
+    "capitalisationDate": "12/03/2017",
+    "assetStatus": "pending",
+    "assigntoEmailId": "kewaleparam0204@gmail.com",
+    "assignedto":193503
+},
+{
+  
+    "assetCode": 9878,
+    "employeeCode": 12156962, 
+    "companyCode": 34754,
+    "description": "desktop",
+    "quantity": 1,
+    "location": "delhi",
+    "capitalisationDate": "18/03/2017",
+    "assetStatus": "pending",
+    "assigntoEmailId": "kewaleparam0204@gmail.com",
+    "assignedto":193503
+},
+{
+  
+    "assetCode": 9877,
+    "employeeCode": 12156963, 
+    "companyCode": 34754,
+    "description": "laptop",
+    "quantity": 1,
+    "location": "delhi",
+    "capitalisationDate": "12/03/2017",
+    "assetStatus": "pending",
+    "assigntoEmailId": "kewaleparam0204@gmail.com",
+    "assignedto":193503
+},
+{
+  
+    "assetCode": 9878,
+    "employeeCode": 12156963, 
+    "companyCode": 34754,
+    "description": "desktop",
+    "quantity": 1,
+    "location": "delhi",
+    "capitalisationDate": "18/03/2017",
+    "assetStatus": "pending",
+    "assigntoEmailId": "kewaleparam0204@gmail.com",
+    "assignedto":193503
+},
+{
+  
+    "assetCode": 9877,
+    "employeeCode": 12156964, 
+    "companyCode": 34754,
+    "description": "laptop",
+    "quantity": 1,
+    "location": "delhi",
+    "capitalisationDate": "12/03/2017",
+    "assetStatus": "pending",
+    "assigntoEmailId": "kewaleparam0204@gmail.com",
+    "assignedto":193503
+},
+{
+  
+    "assetCode": 9878,
+    "employeeCode": 12156964, 
+    "companyCode": 34754,
+    "description": "desktop",
+    "quantity": 1,
+    "location": "delhi",
+    "capitalisationDate": "18/03/2017",
+    "assetStatus": "pending",
+    "assigntoEmailId": "kewaleparam0204@gmail.com",
+    "assignedto":193503
+}
+]

@@ -1,0 +1,114 @@
+		<div class="container jumbotron">
+	<div class="h3 h3-responsive">Requests Pending For Action :</div>
+	<hr>
+	<div class="mb-5">
+		<div class="card-block">
+			<div class="table-responsive">
+			<table class="table table-striped stable-hover table-definition mb-5 ">
+				<thead class="table-inverse">
+					<tr>
+						<th class="tab_head">Request ID</th>
+						<th class="tab_head">Employee Code</th>
+						<th class="tab_head">Supervisor Code</th>
+						<th class="tab_head">Type of Request</th>
+						<th class="tab_head">PA Code</th>
+						<th class="tab_head">PSA Code</th>
+						<th class="tab_head">OU Code</th>
+						<th class="tab_head">CC Code</th>
+						<th class="tab_head">Date of Request</th>
+						<th class="tab_head">Action Required</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let details of requestlist">
+						<td>{{details.requestId}}</td>
+						<td>{{details.employeeCode}}</td>
+						<td>{{details.supervisorCode}}</td>
+						<td>{{details.typeOfRequest}}</td>
+						<td>{{details.newpacode}}</td>
+						<td>{{details.newpsacode}}</td>
+						<td>{{details.newOucode}}</td>
+						<td>{{details.newCcCode}}</td>
+						<td>{{details.dateOfRequest|date}}</td>
+						<td>
+							<button type="button" class="btn btn-sm btn-outline-success tooltip-test" title="Approve Request" (click)="updateStatus(details)">Approve</button>
+							<button type="button" class="btn btn-sm btn-outline-danger tooltip-test" title="Reject Request" data-toggle="modal" data-target="#exampleModal" data-whatever="comment" (click)="rejectRequest(details)"> Cancel</button>
+						</td>
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+		</div>
+
+	</div>
+	<div class=" modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+	 data-backdrop="static">
+
+		<div class="  modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header" id="sendback">
+
+					<h5 class="modal-title" id="exampleModalLabel">Reason for Cancellation</h5>
+					<!-- <h5 class="modal-title" id="exampleModalLabel">Reason for Cancellation</h5> -->
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+				</div>
+				<div class="modal-body">
+					<form>
+
+						<div class="form-group">
+
+							<textarea class="form-control" id="message-text" [(ngModel)]="comment"[ngModelOptions]="{standalone: true}"></textarea>
+							<div class="modal-footer">
+
+								<button type="button" class="btn btn-outline-success" data-dismiss="modal" (click)="sendBack(details)">Send Back</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- <div class="mylistmodal modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog modal-lg"> -->
+			<!-- Modal content-->
+			<!-- <div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="  close" id="asset" data-dismiss="modal">&times;</button>
+				</div>
+				<div class=" cd_main card mb-5">
+					<div class=" cd card-header">Assert List</div>
+					<div class="card-block p-0">
+						<table class="hello  table table-bordered  table-sm m-0">
+							<thead>
+								<tr>
+									<th class="tab_head">AssetID</th>
+									<th class="tab_head">Asset_Name</th>
+									<th class="tab_head">Description</th>
+									<th class="tab_head">Assign_to</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr *ngFor="let asset of Asset">
+									<td>{{asset.AssetID}}</td>
+									<td>{{asset.Asset_Name}}</td>
+									<td>{{asset.Description}}</td>
+									<td>{{asset.Assign_to}}</td>
+								</tr>
+							</tbody>
+						</table> -->
+					<!-- </div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class=" btn btn-outline-success" data-dismiss="modal">Send All</button>
+
+				</div>
+			</div>
+
+		</div>
+	</div> -->
+
+</div>

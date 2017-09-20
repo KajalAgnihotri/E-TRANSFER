@@ -1,0 +1,41 @@
+
+    <div class="jumbotron container-fluid jumb3"><h3 class="head">Supervisor Clearance Data</h3>
+      <div class="mb-5">
+        <div class="card-block correct">
+          <table class="table table-bordered table-hover table-definition mb-5">
+            <thead class="table-inverse">
+                  <tr>
+                      <th>ReaquestID</th>
+                      <th>EmployeeID</th>
+                      <th>Supervisor Code</th>
+                      <th>Type of Request</th>
+                      <th>New PA Code</th>
+                      <th>New PSA Code</th>
+                      <th>New OU Code</th>
+                      <th>New CC Code</th>
+                      <th>Date of Request</th>
+                      <th>Request Status</th>
+                      <th>Update</th>
+                      <th>Remove</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let list of myrejectedrequest">
+                      <td>{{list.requestId}}</td>
+                      <td>{{list.employeeCode}}</td>
+                      <td>{{list.supervisorCode}}</td>
+                      <td>{{list.typeOfRequest}}</td>
+                      <td>{{list.newpacode}}</td>
+                      <td>{{list.newpsacode}}</td>
+                      <td>{{list.newOucode}}</td>
+                      <td>{{list.newCcCode}}</td>
+                      <td>{{list.dateOfRequest | date}}</td>
+                      <td>{{list.requestStatus}}</td>
+                      <td><button class="btn btn-primary"  (click)="update(list.requestId)">Update</button></td>
+                      <td><button class="btn btn-primary"  (click)="remove(list.employeeCode)">Remove</button></td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>

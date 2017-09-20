@@ -1,0 +1,87 @@
+<nav class="navbar navbar-expand-lg top-bar navbar-static-top sps sps--abv">
+        <div class="container-fluid">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse1" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand mx-auto" href="#"><span>E-Transfer</span></a>
+      <div class="collapse navbar-collapse" id="navbarCollapse1">
+        <ul class="navbar-nav ml-auto">
+         <li class="nav-item active"> <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a> </li>
+        <li class="nav-item"> <a class="nav-link" href="#">About</a> </li>
+        <li class="nav-item"> <a class="nav-link" routerLink="/global-user" >My Pending Requests</a> </li>
+        <li class="nav-item"> <a class="nav-link" (click)="logout()" routerLink="/login-control">Logout</a> </li>
+        </ul>
+      </div>
+            </div>
+    </nav>
+      <router-outlet></router-outlet>
+      <!--FOOTER 2-->
+<footer class="footer2 bottom">
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <nav class="col-md-3 col-sm-6 col-xs-12">
+                        <h3>Browse </h3>
+                        <ul>
+                            <li>
+                                <a href="">Clearance Portal</a>
+                            </li>
+                          
+                            <li>
+                                <a href="">Departmental Clearance</a>
+                            </li>
+                            <li>
+                              <a href="">My Clearance</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <nav class="col-md-3 col-sm-6 col-xs-12">
+                      <h3>This Site</h3>
+                      <ul>
+                          <li>
+                              <a href="">About us</a>
+                          </li>
+                          
+                          <li>
+                              <a href="">Contacts</a>
+                          </li>
+                          <li>
+                            <a href="">Archive</a>
+                         </li>
+                      </ul>
+                        
+                    </nav>
+                    <nav class="col-md-3 col-sm-6 col-xs-12">
+                        
+                    </nav>
+       
+                    <nav class="col-md-3 col-sm-6 col-xs-12">
+                        <h3>Connect <span>with us on :</span></h3>
+                        
+                        <ul class="social">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                            <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                        </ul>
+                    </nav>
+       
+                </div> <!--/.row-->
+            </div> <!--/.container-->
+        </div> <!--/.footer-->
+        
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="pull-left"> Copyright © NIIT Technologies 2017. All right reserved.</div>
+                <div class="pull-right">
+                    <ul>
+                        <li><a  routerLink="" routerLinkActive="active">Home</a></li>
+                        <li><a  routerLink="/login" routerLinkActive="active">Contact Us </a></li>
+                        <li><a  routerLink="/news" routerLinkActive="active">Privacy Policy</a></li>
+                        <li><a  routerLink="/fav" routerLinkActive="active">Sign Out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div> <!--/.footer-bottom--> 
+       </footer>

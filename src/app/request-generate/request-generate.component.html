@@ -1,0 +1,167 @@
+
+<div *ngIf="myemployee">
+<div class="container border">
+	<h2 class="text-center">Generating Request Details:</h2>
+	<hr>
+	<br>
+	<form class="container" name="form">
+		<div>
+			<div class="row"> 
+				<div class="col form-group">
+					<div class="row">
+						<label class="col-sm-4 col-form-label"><h6>Employee Id</h6></label>
+						<input type="text" value = {{myemployee.employeeCode}} class="col-sm-8 form-control form-control-primary" placeholder="Employee Id">
+					</div>
+				</div>
+				<div class="col form-group">
+					<div class="row">
+						<label class="col-sm-4 col-form-label"><h6>Employee name</h6></label>
+						<input type="text" value= {{myemployee.employeeName}} class="col-sm-8 form-control" placeholder="Employee name">
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col form-group">
+					<div class="row">
+						<label class="col-sm-4 col-form-label"><h6>Email</h6></label>
+						<input type="email" value= {{myemployee.employeeEmailId}} class="col-sm-8 form-control" placeholder="name@example.com">
+					</div>
+				</div>
+				<div class="col form-group">
+					<div class="row">
+						<label class="col-sm-4 col-form-label"><h6>Location</h6></label>
+						<input type="text" value= {{myemployee.location}} class="col-sm-8 form-control" placeholder="Location">
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col form-group">
+					<div class="row">
+						<label class="col-sm-4 col-form-label"><h6>Local Cso</h6></label>
+						<input type="text" value = {{myemployee.localCSO}} class="col-sm-8 form-control" placeholder="Destination">
+					</div>
+				</div>
+				<div class="col form-group">
+					<div class="row">
+						<label class="col-sm-4 col-form-label"><h6>Company Code</h6></label>
+						<input type="text"value = {{myemployee.companyCode}} class="col-sm-8 form-control" placeholder="Company Code">
+					</div>
+				</div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col"></div>
+				<div class="col-5 form-group">
+					<div class="col text-center"><h5>Type Of Request</h5></div>
+					<br>
+					<select class="col custom-select form-control" [(ngModel)]="category" name="choice" id="choice" onchange="inputfieldsenabled()" (click)="defaultvalue()">
+				        <option value="undefined" disabled selected hidden>Select Your Choice</option>
+						<option  *ngFor="let category of MyList " [ngValue]="category">{{category}}</option>
+					</select>
+				</div>
+				<div class="col"></div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col form-group">
+					<div><h5 class="text-center">Current Details</h5></div>
+					<br>
+					<div class="row">
+						<div class="col"></div>
+						<label class="col col-form-label"><h6>PA</h6></label>
+						<p class="col form-control-static">{{myemployee.pacode}}</p>	<!--static fields-->
+						<div class="col"></div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col"></div>
+						<label class="col col-form-label"><h6>PSA</h6></label>
+						<p class="col form-control-static">{{myemployee.psacode}}</p>	<!--static fields-->
+						<div class="col"></div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col"></div>
+						<label class="col col-form-label"><h6>OU</h6></label>
+						<p class="col form-control-static">{{myemployee.oucode}}</p>	<!--static fields-->
+						<div class="col"></div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col"></div>
+						<label class="col col-form-label"><h6>CC</h6></label>
+						<p class="col form-control-static">{{this.myemployee.ccCode}}</p>	<!--static fields-->
+						<div class="col"></div>
+					</div>
+				</div>
+				<div class="col form-group">
+					<div><h5 class="text-center">New Details</h5></div>
+					<br>
+					<div class="row">
+						<div class="col"></div>
+						<label class="col col-form-label"><h6>PA</h6></label>
+						<input type="text" name="PA" [(ngModel)] = "newpa"  value= {{newpa}} [ngModelOptions]="{standalone: true}" class="col form-control form-control-primary" placeholder="PA" required disabled>
+						<div class="col"></div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col"></div>
+						<label class="col col-form-label"><h6>PSA</h6></label>
+						<input type="text" name="PSA" [(ngModel)] = "newpsa" value = {{newpsa}} [ngModelOptions]="{standalone: true}" class="col form-control form-control-primary" placeholder="PSA" required disabled>
+						<div class="col"></div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col"></div>
+						<label class="col col-form-label"><h6>OU</h6></label>
+						<input type="text" name="OU" [(ngModel)] = "newou" value = {{newou}} [ngModelOptions]="{standalone: true}" class="col form-control form-control-primary" placeholder="OU" required disabled>
+						<div class="col"></div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col"></div>
+						<label class="col col-form-label"><h6>CC</h6></label>
+						<input type="text" name="CC" [(ngModel)] = "newcc" value = {{newcc}} [ngModelOptions]="{standalone: true}" class="col form-control form-control-primary" placeholder="CC" required disabled>
+						<div class="col"></div>
+					</div>
+				</div>
+			</div>
+			<hr>
+			<br>
+			<div class="clearfix"></div>
+			<div class="row">
+				<div class="col"></div>
+				<button type="submit" class="col-4 btn btn-primary btn-md btn-block btn-responsive" data-toggle="modal" data-target="#myModal" (click)="assignasset()">Assign</button>
+				<div class="col"></div>
+			</div>
+		</div>
+		<br>
+	</form>
+
+	<div class="modal fade" id="myModal" role="dialog">
+			<div class="modal-dialog modal-lg">
+			
+			  <!-- Modal content-->
+			  <div class="modal-content">
+				<div class="modal-header">
+				  <button type="button" class="close" data-dismiss="modal">&times;</button>
+				  <h4 class="modal-title">ASSET OWN BY EMPLOYEE</h4>
+				</div>
+				<div class="modal-body">
+						<div class="tab-pane fade show active" role="tabpanel">
+								<div class="table-responsive">
+									<table class="table table-striped table-hover">
+											<app-reassignment-list *ngIf="data"  [request]="data"></app-reassignment-list>
+									</table>
+								</div>
+							</div>
+				</div>
+			  </div>
+			  
+			</div>
+		  </div>
+
+</div>
+</div>
