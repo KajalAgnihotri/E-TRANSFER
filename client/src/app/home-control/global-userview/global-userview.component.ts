@@ -7,46 +7,45 @@ import { AssetsData } from '../../model/asset';
   templateUrl: './global-userview.component.html',
   styleUrls: ['./global-userview.component.css']
 })
+
 export class GlobalUserviewComponent implements OnInit {
-mypendingassetrequest:AssetsData[]=[];
-dummyid:number = 193503;
+  myPendingAssetRequest:AssetsData[]=[];
+  dummyId:number = 193503;
+
   constructor(private globalUser : GlobalUserService) { }
 
+  //On loading of component,this method will automatically run which gets all the pending requests from the service.
   ngOnInit() {
-    this.globalUser.getmypendingrequest(this.dummyid).subscribe(data =>
-       {
-         this.mypendingassetrequest=data
-         console.log(this.mypendingassetrequest);
-    } );
+    this.globalUser.getMyPendingRequest(this.dummyId).subscribe(data => {
+      this.myPendingAssetRequest=data
+      console.log(this.myPendingAssetRequest);
+    });
   }
 
-  accept(data){
-
+  //here this method will get asset id and asset data from html form, for updating the asset status in database and removing the row from html page.
+  accept(data) {
     console.log("data...."+data);
     let id = data.assetId;
     console.log(id);
-    data.assetstatus = 1;
-      this.globalUser.approve(id,data).then(resp => {
-        const index= this.mypendingassetrequest.indexOf(data);
-        console.log(index);
-        this.mypendingassetrequest.splice(index,1);
-      })
+    data.assetStatus = 1;
 
-    
-      
+    this.globalUser.approve(id,data).then(resp => {
+      const index= this.myPendingAssetRequest.indexOf(data);
+      console.log(index);
+      this.myPendingAssetRequest.splice(index,1);
+    })      
   }
-  reject(data){
+
+  //here this method will get asset id and asset data from html form, for updating the asset status in database and removing the row from html page.
+  reject(data) {
     let id = data.assetId;
     console.log(id);
-    data.assetstatus = 2;
+    data.assetStatus = 2;
+
     this.globalUser.reject(id,data).then(resp => {
-      const index= this.mypendingassetrequest.indexOf(data);
+      const index= this.myPendingAssetRequest.indexOf(data);
       console.log(index);
-      this.mypendingassetrequest.splice(index,1);
+      this.myPendingAssetRequest.splice(index,1);
     })
-
-   
-  
   }
-
 }

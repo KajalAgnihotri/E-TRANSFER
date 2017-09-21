@@ -9,25 +9,24 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class GlobalUserService {
+
 	constructor(private http: Http) { }
-
-	getmypendingrequest(empid:number):Observable<AssetsData[]>{
-		// here this method will get all the list of the employee list which is associated with the supervisor
+	
+	// here this method will get all the list of the employee list which is associated with the supervisor and having request pending.
+	getMyPendingRequest(empid:number):Observable<AssetsData[]> {
 		return this.http.get('http://localhost:56622/api/AssetAssignedUser/'+empid)
-		.map(response => response.json())
-    }	
-    
-    approve(id:number , reassignment:AssetsData):Promise<any>{
-        
-                return this.http.put('http://localhost:56622/api/AssetAssignedUser/'+id,reassignment,
-                        {headers: new Headers({'Content-Type':'application/json'})
-                     }).toPromise();
-                }
-
-    reject(id:number , reassignment:AssetsData):Promise<any>{
-                    
-        return this.http.put('http://localhost:56622/api/AssetAssignedUser/'+id,reassignment,
-             {headers: new Headers({'Content-Type':'application/json'})
-             }).toPromise();
-     }
+		                     .map(response => response.json());
+  }	
+		
+	// here this method will get asset id and asset data when called by component, for updating the asset status in database.
+  approve(id:number , reassignment:AssetsData):Promise<any> {
+    return this.http.put('http://localhost:56622/api/AssetAssignedUser/'+id,reassignment,
+                         {headers: new Headers({'Content-Type':'application/json'})}).toPromise();                        
+	}
+	
+	// here this method will get asset id and asset data when called by component, for updating the asset status in database. 
+  reject(id:number , reassignment:AssetsData):Promise<any> {                  
+    return this.http.put('http://localhost:56622/api/AssetAssignedUser/'+id,reassignment,
+                         {headers: new Headers({'Content-Type':'application/json'})}).toPromise();          
+  }
 }
