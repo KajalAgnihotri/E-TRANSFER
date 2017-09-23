@@ -7,107 +7,111 @@ using Microsoft.Extensions.Configuration;
 using MimeKit;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+
 namespace E_TransferWebApi.Controllers
 {
     [Route("api/HR")]
     public class HRController : Controller
     {
+        // Service instances
         IHRService _service;
-        IEmployeeDetailsService details;
-        IAssetDetailsRepo _assetrepo;
-        public HRController(IHRService service, IEmployeeDetailsService detailsab, IAssetDetailsRepo assetrepo)
+        public HRController(IHRService service)
         {
             _service = service;
-            details = detailsab;
-            _assetrepo = assetrepo;
-            var builder = new ConfigurationBuilder()
-                .AddJsonFile("config.json", optional: false, reloadOnChange: true);
-            Configuration = builder.Build();
         }
-        public IConfigurationRoot Configuration { get; }
+        
+        //Method to get all the rquests pending with HR 
         // GET: api/HRController
         [HttpGet]
-        public IEnumerable<RequestDetails> Get()
+        public IActionResult Get()
         {
-            return _service.GetAllRequest();
+            try
+            {
+                List<RequestDetails> requestList = _service.GetAllRequest();
+                if (requestList.Count == 0)
+                {
+                    return this.NotFound("There are no requests pending with the supervisor");
+                }
+                return Ok(requestList);
+            }
+            
+            catch(TimeoutException e)
+            {
+                Console.WriteLine(e.StackTrace);
+                return StatusCode(102);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                return StatusCode(500);
+            }
         }
+
+        //Method to update the request on the HR approval
+        //Update request using requestId
         // PUT api/HR/5
         [HttpPut()]
         [Route("PutAcceptRequest/{id}")]
-        public void PutAcceptRequest(int id, [FromBody]RequestDetails request)
+        public IActionResult PutAcceptRequest(int id, [FromBody]RequestDetails request)
         {
-            _service.UpdateRequest(id, request);
-            EmailForApprovalInHR(id, request);
-        }
-        private void EmailForApprovalInHR(int id, RequestDetails request)
-        {
-            List<AssetDetails> details = new List<AssetDetails>();
-            List<AssetDetails> detaillist = _assetrepo.GetAssetByEmpCode(request.EmployeeCode);
-            foreach (AssetDetails del in detaillist)
+            try
             {
-                if (del.EmployeeCode == request.EmployeeCode)
+                if (request == null || request.RequestId != id)
                 {
-                    string emailid = del.AssignToEmailId;
-                    int code = del.AssignedTo;
-                    var message = new MimeMessage();
-                    message.From.Add(new MailboxAddress(Configuration["Title"], Configuration["FromEmail"]));
-                    message.To.Add(new MailboxAddress(code.ToString(), emailid));
-                    message.Subject = Configuration["SubjectForApproval"];
-                    var bodyBuilder = new BodyBuilder();
-
-                    bodyBuilder.HtmlBody = @"<div> Dear Sir/Madam </div><br><br><div>Your Request is Approved By Hr</div><br><div> Hr Department</div>";
-                    message.Body = bodyBuilder.ToMessageBody();
-
-                    using (var client = new SmtpClient())
-                    {
-                        client.Connect(Configuration["Domain"], 587, false);
-                        client.Authenticate(Configuration["FromEmail"], Configuration["Password"]);
-                        client.Send(message);
-                        client.Disconnect(true);
-                    }
+                    return BadRequest();  //Validation that object and id can't be null
                 }
+                if (_service.UpdateRequest(id, request)) //Update request on Hr rejection
+                {
+                    _service.EmailForApprovalInHr(id, request); //Asset Acceptence mail to employees
+                    return new NoContentResult();
+                }
+                return BadRequest();
+            }
+            catch (ArgumentNullException e)
+            {
+                Console.WriteLine(e.StackTrace);
+                return BadRequest();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                return StatusCode(500);
             }
 
-
         }
+
+        //Method to update the request on the HR rejection
         // PUT api/HR/5
         [HttpPut()]
         [Route("PutRejectRequest/{id}")]
-        public void PutRejectRequest(string id, [FromBody]RequestDetails request)
+        public IActionResult PutRejectRequest(string comment, [FromBody]RequestDetails request)
         {
-            _service.UpdateRequestWithComment(id, request);
-            EmailRejected(id, request);
-        }
-        private void EmailRejected(string id, RequestDetails req)
-        {
-            EmployeeDetails temp = details.GetEmployeeById(req.EmployeeCode);
-
-            Console.WriteLine(temp);
-            if (temp.Supervisor == req.SupervisorCode)
+            try
             {
-                string emailid = temp.SupervisorEmailId;
-                string name = temp.SupervisorName;
-
-                var message = new MimeMessage();
-                message.From.Add(new MailboxAddress(Configuration["Title"], Configuration["FromEmail"]));
-                message.To.Add(new MailboxAddress(name, emailid));
-                message.Subject = Configuration["SubjectForRejection"];
-                var bodyBuilder = new BodyBuilder();
-
-                bodyBuilder.HtmlBody = @"<div>  Dear Supervisor </div><br><br><div>Your Request has been rejected by Hr for the stated reason: "+ id+"</div><br><div> Hr Department</div>";
-                message.Body = bodyBuilder.ToMessageBody();
-                //message.Body = new TextPart("plain")
-                //{
-                //    Text = id
-                //};
-                using (var client = new SmtpClient())
+                if (request == null || comment == null)
                 {
-                    client.Connect(Configuration["Domain"], 587, false);
-                    client.Authenticate(Configuration["FromEmail"], Configuration["Password"]);
-                    client.Send(message);
-                    client.Disconnect(true);
+                    //Validation that object and comment can't be null
+                    return BadRequest();
                 }
+                if (_service.UpdateRequestWithComment(comment, request)) //Update request on Hr rejection
+                {
+                    _service.EmailRejected(comment, request); //Rejection mail to supervisor
+                    return new NoContentResult();
+                }
+                return BadRequest();
+            }
+            catch(ArgumentNullException e)
+            {
+                return BadRequest();
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                return StatusCode(500);
+               
             }
         }
+        
     }
 }
