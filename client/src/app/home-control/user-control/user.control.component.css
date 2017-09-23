@@ -1,27 +1,31 @@
+main jumbotron
 .jumboMain{
     background-image: url('http://t.wallpaperweb.org/wallpaper/computer/1920x1200/The_Heavy_Azor_1920x1200.jpg');
  }
+ /*inner jumbotron*/
  .jumboInner{
     background-image: url('http://epicwallpaperz.com/wallpaper-hd/polygon-wallpapers-hd-On-wallpaper-hd.png');
     background-size: cover;
     height:200px;
-    text-align: center;
     margin-bottom: 5%;
+    text-align: center;
  }
+ /*profile image thumbnail */
  .img-thumbnail{
-  
     border-width: 4px;
-    border-color: white
- }
+    text-align: center;
+   }
+   /*text color for h3 and small*/
  h3 ,small{
     color: white;
  }
+ /*profile image*/
  .profile{
-    width: 80px;
     height: 80px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom:auto;
+    width: 80px;
  
     -webkit-transition: all 1s ease;
     -moz-transition: all 1s ease;
@@ -29,11 +33,12 @@
      -ms-transition: all 1s ease;
          transition: all 1s ease;
  }
+ /*profile on hover*/
  .profile:hover {
     width: 100px;
     height: 80px;
   }
- 
+
  .spacing-one{
     width: 100px;
  }
@@ -49,14 +54,16 @@
     padding-bottom: 1%;
  }
  
+ /*ticket part*/
  .ticket-position{
     padding-top: 1%;
  }
  
+ /*progress bar*/
  .progress{
-  
-    margin-bottom: 0%;
+  margin-bottom: 0%;
  }
+ /*media queries*/
  @media (max-width: 576px){
  .col-lg-8 {
     padding-top: 4%;

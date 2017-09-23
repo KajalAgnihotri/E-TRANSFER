@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using E_TransferWebApi.Models;
 using E_TransferWebApi.Services;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
 
 namespace E_TransferWebApi.Controllers
 {
@@ -19,21 +19,62 @@ namespace E_TransferWebApi.Controllers
         {
             _service = service;
         }
-        // GET api/values/5
+        //Method to get request details using employee code
+        // GET api/User/5
         [HttpGet()]
         [Route("GetRequest/{id}")]
-        public RequestDetails GetRequest(int id)
+        public IActionResult GetRequest(int id)
         {
-            return _service.GetUserByEmpcode(id);
-        }
+             
+            try
+            {
+                RequestDetails request = _service.GetUserByEmpcode(id);//service call
+                if (request != null)
+                {
+                    return Ok(request);
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            catch
+            {
+                return StatusCode(500);
 
-        // GET api/values/5
-        [HttpGet()]
+            }
+
+            
+           
+       }
+        //Method to get Employee Details
+        // GET api/User/5
+    [HttpGet()]
         [Route("GetEmployee/{id}")]
-        public EmployeeDetails GetEmployee(int id)
+        public IActionResult GetEmployee(int id)
         {
-            return _service.GetUserDetails(id);
+            
+
+            try
+            {
+                EmployeeDetails employee = _service.GetUserDetails(id);
+                if (employee == null)
+                {
+                    return BadRequest();
+                }
+                else
+
+                {
+                    return Ok(employee);
+                }
+                
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
         }
 
     }
-}
+    }
+

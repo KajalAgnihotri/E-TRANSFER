@@ -1,37 +1,35 @@
 import { Component, OnInit } from '@angular/core';
-import { UserControlService } from './user-control.service';
+import { UserControlService } from './user.control.service';
 import { Employee } from '../../model/employee';
 import { Request } from '../../model/request';
 import {DatePipe} from '@angular/common'
 @Component({
  selector: 'app-user-control',
- templateUrl: './user-control.component.html',
- styleUrls: ['./user-control.component.css']
+ templateUrl: './user.control.component.html',
+ styleUrls: ['./user.control.component.css']
 })
 export class UserControlComponent implements OnInit {
  employee:Employee;
- emp_id:number;
  request;
  requestStatus:string="0%";
- StatusStyle;
+ statusStyle;
  constructor(private userControlService: UserControlService) { }
 
-
+/*this will be initiated on loading of this component*/
  ngOnInit() {
-   this.userControlService.getEmployeeDetail(12156955)
+   this.userControlService.getEmployeeDetail(12156955) /*this will return employee details*/
    .then(data => {
-     this.employee = data; this.userControlService.getRequestInfoForEmployee(12156955)
+     this.employee = data; this.userControlService.getRequestInfoForEmployee(12156955) /*this will return request details of particular employee*/
      .then(data=>{
        this.request=data;
-       this.progressbarLogic();
-     console.log(this.request);
-     console.log(this.request.pendingWith);
-     console.log(data);
+       this.progressBarLogic(); /* this will will return progress of request*/
+  
    });
  });
  }
 
- progressbarLogic(){
+ /*logic of progress bar*/
+ progressBarLogic(){
    if(this.request.pendingWith=="Supervisor"){
 
      this.requestStatus="20%";
@@ -52,9 +50,9 @@ export class UserControlComponent implements OnInit {
      else if(this.request.pendingWith=="Approved"){
       this.requestStatus="100%";
      }  
-     console.log(this.requestStatus);
-     this.StatusStyle={'width':this.requestStatus};
-     console.log(this.StatusStyle);
+    
+     this.statusStyle={'width':this.requestStatus};
+     
    }
    
 }
