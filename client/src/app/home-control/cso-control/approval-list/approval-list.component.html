@@ -1,105 +1,94 @@
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" rel="stylesheet"/>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <div class=" jumbotron container-fluid "><h3 class="head"> CSO Clearance Data</h3>
-      <div class="mb-5">
-        <div class="card-block high">
-          <table class="table table-bordered table-hover table-definition mb-5">
-            <thead class="table-inverse">
-                  <tr >
-                      <th class="text-center">ResquestID</th>
-                      <th class="text-center">EmployeeID</th>
-                      <th class="text-center">Supervisor Code</th>
-                      <th class="text-center">Type of Request</th>
-                      <th class="text-center">PA Code</th>
-                      <th class="text-center">PSA Code</th>
-                      <th class="text-center">OU Code</th>
-                      <th class="text-center">CC Code</th>
-                      <th class="text-center">Date of Request</th>
-                      <th class="text-center">Request Status</th>
-                      <th class="text-center">Asset Details</th>
-                      <th class="text-center">Approve</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr *ngFor="let list of myreqlist ">
-                      <td class="text-center">{{list.requestId}}</td>	
-                      <td class="text-center">{{list.employeeCode}}</td>
-                      <td class="text-center">{{list.supervisorCode}}</td>
-                      <td class="text-center">{{list.typeOfRequest | titlecase}}</td>
-                      <td class="text-center">{{list.newpacode}}</td>
-                      <td class="text-center">{{list.newpsacode}}</td>
-                      <td class="text-center">{{list.newOucode}}</td>
-                      <td class="text-center">{{list.newCcCode}}</td>
-                      <td class="text-center">{{list.dateOfRequest|date}}</td>
-                      <td class="text-center">{{list.requestStatus}}</td>
-                      <td class="text-center"><button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModalLong" (click)="getAssetDetails(list.employeeCode)">View Asset Detail</button></td>
-                      <td class="text-center"><button class="btn btn-primary fa fa-check" aria-hidden="true" (click)="approveUserRequest(list)"></button></td>
-                  </tr>
-              </tbody>
-          </table>
-      </div>
-  </div>
-</div>
-
-<!-- <div class=" modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">  -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" rel="stylesheet"/> <!-- Using Boostrap library via link -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"> <!-- Using Font Awesome Feature via Link -->
+<div class=" jumbotron container-fluid "><h3 class="head"> CSO Clearance Data</h3> <!-- Using Jumbotron where table will be placed -->
+	<div class="mb-5">
+		<div class="card-block high">
+			<table class="table table-bordered table-hover table-definition mb-5"> <!-- Using Table -->
+				<thead class="table-inverse">
+					<tr > <!-- Heading on the table -->
+						<th class="text-center">ResquestID</th>
+						<th class="text-center">EmployeeID</th>
+						<th class="text-center">Supervisor Code</th>
+						<th class="text-center">Type of Request</th>
+						<th class="text-center">PA Code</th>
+						<th class="text-center">PSA Code</th>
+						<th class="text-center">OU Code</th>
+						<th class="text-center">CC Code</th>
+						<th class="text-center">Date of Request</th>
+						<th class="text-center">Request Status</th>
+						<th class="text-center">Asset Details</th>
+						<th class="text-center">Approve</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr  *ngFor="let list of myreqlist "> 
+						<td class="text-center">123213321</td>	
+						<td class="text-center">{{list.employeeCode}}</td>
+						<td class="text-center">{{list.supervisorCode}}</td>
+						<td class="text-center">{{list.typeOfRequest | titlecase}}</td>
+						<td class="text-center">{{list.newpacode}}</td>
+						<td class="text-center">{{list.newpsacode}}</td>
+						<td class="text-center">{{list.newOucode}}</td>
+						<td class="text-center">{{list.newCcCode}}</td>
+						<td class="text-center">{{list.dateOfRequest|date}}</td>
+						<td class="text-center">{{list.requestStatus}}</td>
+						<td class="text-center"><button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModalLong" (click)="getAssetDetails(list.employeeCode)">View Asset Detail</button></td>
+						<td class="text-center"><button class="btn btn-primary fa fa-check" aria-hidden="true" (click)="approveUserRequest(list)"></button></td> <!-- Button is used to transfer control to component -->
+					</tr>
+				</tbody>
+			</table> <!-- Ending Table -->
+		</div> <!-- Ending Card-block -->
+	</div> <!-- Ending mb-5 -->
+</div> <!-- Ending Jumbotron -->
 
 
 
-          <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-              <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Asset Details</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true"> <!-- Asset List Modal -->
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLongTitle">Asset Details</h5> <!-- Modal Title -->
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="mb-5">
+					<div class="card-block">
+						<table class="mt table table-bordered table-hover table-definition mb-5"> <!-- Starting of Table -->
+							<thead class="bg-light">
+								<tr > <!-- Heading of Modal Table -->
+									<td class="text-center">Asset ID</td>
+									<td class="text-center">Asset Code</td>
+									<td class="text-center">Asset Status</td>
+									<td class="text-center">Cap_Date</td>
+									<td class="text-center">Description </td>
+									<td class="text-center">Quantity</td>
+									<td class="text-center">Assigned To</td> 
+									<td class="text-center">Location</td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr *ngFor="let asset of myassetdetail ">  <!-- Showing Data in table's list using iteration -->
+									<td class="text-center">{{asset.assetId}}</td>
+									<td class="text-center">{{asset.assetCode}}</td>
+									<td class="text-center">{{asset.assetStatus}}</td>
+									<td class="text-center">{{asset.capitalisationDate }} </td>
+									<td class="text-center">{{asset.description | titlecase}}</td>
+									<td class="text-center">{{asset.quantity}}</td>
+									<td class="text-center">{{asset.assignedTo}}</td>
+									<td class="text-center">{{asset.location | titlecase}}</td>
+								</tr>
+							</tbody>
+						</table> <!-- Closing of Asset Table -->
+					</div> <!-- Closing of card-block -->
 
-<!-- <div class=" jumbotron jumb1 container"><h3 class="head">Asset Details</h3>
-    <div class="jumbotron jumb2 container"> -->
-      <div class="mb-5">
-        <div class="card-block">
-          <table class="mt table table-bordered table-hover table-definition mb-5">
-            <thead class="bg-light">
-                  <tr >
-  
-            <td class="text-center">Asset ID</td>
-            <td class="text-center">Asset Code</td>
-            <td class="text-center">Asset Status</td>
-            <td class="text-center">Cap_Date</td>
-            <td class="text-center">Description </td>
-            <td class="text-center">Quantity</td>
-             <td class="text-center">Assigned To</td> 
-             <td class="text-center">Location</td>
-            
-             </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let asset of myassetdetail ">
-              <td class="text-center">{{asset.assetId}}</td>
-               <td class="text-center">{{asset.assetCode}}</td>
-              <td class="text-center">{{asset.assetStatus}}</td>
-              <td class="text-center">{{asset.capitalisationDate }} </td>
-              <td class="text-center">{{asset.description | titlecase}}</td>
-              <td class="text-center">{{asset.quantity}}</td>
-              <td class="text-center">{{asset.assignedTo}}</td>
-              <td class="text-center">{{asset.location | titlecase}}</td>
-              
-                </tr>
-            </tbody>
-          </table>
-        </div>
-     
-      </div>
-      </div>
-      <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-</div>
-          </div>
-          
-          
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+			</div>
+		</div> <!-- Ending of modal-content -->
+	</div> <!-- Ending modal-dialog modal-lg -->
+</div> <!-- Ending of Asset List  -->
+

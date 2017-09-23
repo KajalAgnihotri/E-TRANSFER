@@ -1,4 +1,4 @@
-		<div class="container jumbotron">
+<div class="container jumbotron">
 	<div class="h3 h3-responsive">Requests Pending For Action :</div>
 	<hr>
 	<div class="mb-5">
@@ -6,7 +6,7 @@
 			<div class="table-responsive">
 			<table class="table table-striped stable-hover table-definition mb-5 ">
 				<thead class="table-inverse">
-					<tr>
+					<tr> <!-- Heading of request table --> 
 						<th class="tab_head">Request ID</th>
 						<th class="tab_head">Employee Code</th>
 						<th class="tab_head">Supervisor Code</th>
@@ -20,8 +20,8 @@
 
 					</tr>
 				</thead>
-				<tbody>
-					<tr *ngFor="let details of requestlist">
+				<tbody> 
+					<tr *ngFor="let details of requestList"> <!-- Contains details of table -->
 						<td>{{details.requestId}}</td>
 						<td>{{details.employeeCode}}</td>
 						<td>{{details.supervisorCode}}</td>
@@ -33,18 +33,18 @@
 						<td>{{details.dateOfRequest|date}}</td>
 						<td>
 							<button type="button" class="btn btn-sm btn-outline-success tooltip-test" title="Approve Request" (click)="updateStatus(details)">Approve</button>
-							<button type="button" class="btn btn-sm btn-outline-danger tooltip-test" title="Reject Request" data-toggle="modal" data-target="#exampleModal" data-whatever="comment" (click)="rejectRequest(details)"> Cancel</button>
+							<button type="button" class="btn btn-sm btn-outline-danger tooltip-test" title="Reject Request" data-toggle="modal" data-target="#exampleModal" data-whatever="comment" (click)="rejectRequest(details)">Cancel</button> <!-- Modal will be called for HR cancellation of request -->
 						</td>
 					</tr>
 
 				</tbody>
 			</table>
 		</div>
-		</div>
+	</div>
 
 	</div>
-	<div class=" modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
-	 data-backdrop="static">
+<div class=" modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+	 data-backdrop="static"> <!-- Modal used for cancellation box for HR -->
 
 		<div class="  modal-dialog" role="document">
 			<div class="modal-content">
@@ -70,45 +70,6 @@
 					</form>
 				</div>
 			</div>
-		</div>
-	</div>
-	<!-- <div class="mylistmodal modal fade" id="myModal" role="dialog">
-		<div class="modal-dialog modal-lg"> -->
-			<!-- Modal content-->
-			<!-- <div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="  close" id="asset" data-dismiss="modal">&times;</button>
-				</div>
-				<div class=" cd_main card mb-5">
-					<div class=" cd card-header">Assert List</div>
-					<div class="card-block p-0">
-						<table class="hello  table table-bordered  table-sm m-0">
-							<thead>
-								<tr>
-									<th class="tab_head">AssetID</th>
-									<th class="tab_head">Asset_Name</th>
-									<th class="tab_head">Description</th>
-									<th class="tab_head">Assign_to</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr *ngFor="let asset of Asset">
-									<td>{{asset.AssetID}}</td>
-									<td>{{asset.Asset_Name}}</td>
-									<td>{{asset.Description}}</td>
-									<td>{{asset.Assign_to}}</td>
-								</tr>
-							</tbody>
-						</table> -->
-					<!-- </div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class=" btn btn-outline-success" data-dismiss="modal">Send All</button>
-
-				</div>
-			</div>
-
-		</div>
-	</div> -->
-
-</div>
+		</div> <!-- End of Modal div -->
+	</div> <!-- End of Requests Pending For Action -->
+</div> <!-- Ending of jumbotron -->
