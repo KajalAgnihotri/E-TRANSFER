@@ -3,7 +3,11 @@ using E_TransferWebApi.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace E_TransferWebApi.Services
 {
@@ -33,11 +37,11 @@ namespace E_TransferWebApi.Services
         }
 
         public void AddAsset(List<AssetDetails> assetlist)
-        {
-            foreach (AssetDetails asset in assetlist)
-            {
-                _assetrepo.AddAsset(asset);
-            }
+        {   
+                foreach (AssetDetails asset in assetlist)
+                {
+                    _assetrepo.AddAsset(asset);
+                }
         }
 
         public string AddRequest(RequestDetails request)
@@ -104,8 +108,7 @@ namespace E_TransferWebApi.Services
                 }
             }
             return requestlist;
-
-            //return _requestrepository.GetAllRequest();
+            //this function return all pending request
         }
 
         public List<AssetDetails> Getasset()
