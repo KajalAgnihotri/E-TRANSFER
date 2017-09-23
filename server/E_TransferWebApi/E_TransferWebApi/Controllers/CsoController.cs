@@ -19,22 +19,12 @@ namespace E_TransferWebApi.Controllers
 
         [HttpGet]
         [Route("GetPendingCsoRequest")]
-        public IActionResult GetPendingCsoRequest()
+        public List<RequestDetails> GetPendingCsoRequest()
         {
-            try
-            {
-                List<RequestDetails> requestList = _service.GetRequestPendingWithCso();
-                if (requestList.Count == 0)
-                {
-                    return this.NotFound("There is no request pending with Cso");
-                }
-                return Ok(requestList); //return request list pending with cso with okay response 
-            }
-            catch(Exception)
-            {
-                return StatusCode(500);
-            }
-              
+
+            return _service.GetRequestPendingWithCso();
+
+            //to get all the pending request with cso
         }
 
         [HttpGet()]
@@ -60,31 +50,20 @@ namespace E_TransferWebApi.Controllers
 
         public IActionResult Put(int id, [FromBody] RequestDetails request)
         {
-            try
+            if (request == null)
             {
 
-                if (_service.UpdateRequest(id, request))//update request status to cleared and appoved by cso
-                {
-                    _service.EmailbyCso(id, request); //mail for approval of request
+                return StatusCode(404);  //BadRequest
+            }
 
-                    return new NoContentResult();
-                }
+            if (_service.UpdateRequest(id, request))//update request status to cleared and appoved by cso
+            {
+                _service.EmailbyCso(request); //mail for approval of request
 
-                return BadRequest();
+                return new NoContentResult();
             }
-            catch (ArgumentNullException e)
-            {
-                Console.WriteLine(e.StackTrace);
-                return BadRequest();
-            }
-            catch (Exception)
-            {
-                return StatusCode(500); //internal server error
-            }
+            return BadRequest();
 
         }
     }
 }
-
-
-

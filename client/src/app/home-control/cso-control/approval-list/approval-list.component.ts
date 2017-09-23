@@ -10,30 +10,32 @@ import {DatePipe , TitleCasePipe} from '@angular/common';
   styleUrls: ['./approval-list.component.css']
 })
 export class ApprovalListComponent implements OnInit {
-  myreqlist:Request[] ;
-  myassetdetail : Request[]=[];
+  myReqList:Request[] ;
+  myAssetDetail : Request[]=[];
   value:number;
-  constructor( private csoService : CsoService ) {   }
+  constructor( private csoService : CsoService ) {   } //CsoService will be used to connect with the API
   ngOnInit() {
+    //getting data from API to Angular Application when the page is executed for the first time
+    //calling servive from here
     this.csoService.getViewAllRequest()
-    .subscribe(response => {console.log(response);this.myreqlist=response } );
-    
+                   .subscribe(response => {this.myReqList=response } ); 
   }
-  getAssetDetails(assetcode : string)
+  getAssetDetails(assetCode : string)
   {
-    this.csoService.getAssetDetailsByCode(assetcode)
-    .subscribe(response => {console.log(response);this.myassetdetail = response});
+    //getting data from service when button of get asset list pressed
+    this.csoService.getAssetDetailsByCode(assetCode)
+                   .subscribe(response => {this.myAssetDetail = response});
   }
-  approveUserRequest(myList )
+  approveUserRequest(myList)
   {
-  //  myList.requestId=this.value;
+    //This method is called when CSO accepts Approve the Request
+    //This will call service
     myList.requestStatus = "Cleared";
     myList.pendingWith = "Approved";
-    console.log(myList);
-    this.csoService.UpdateApprovalStatus(myList);
+    this.csoService.updateApprovalStatus(myList);
 
-    const index=this.myreqlist.indexOf(myList);
-    this.myreqlist.splice(index,1);
-   
+    //Removing the row immediately when CSO accept the request
+    const index=this.myReqList.indexOf(myList);
+    this.myReqList.splice(index,1); 
   }
 }

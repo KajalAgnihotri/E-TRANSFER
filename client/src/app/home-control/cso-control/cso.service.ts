@@ -9,21 +9,23 @@ export class CsoService {
 	request: Request;
     constructor(private http: Http) { }
     getViewAllRequest() {
+      //this method is used to get data from API to get pending requests
         return this.http.get("http://localhost:56622/api/Cso/GetPendingCsoRequest")
-            .map(response => response.json());
+                        .map(response => response.json());
             
     }
-    UpdateApprovalStatus(request) {
+    updateApprovalStatus(request) {
+      //this method is used to execute the approval request from CSO
         let id = request.requestId;
-       
         this.http.put("http://localhost:56622/api/cso/"+id, request, { headers: new Headers({ 'Content-Type': 'application/json' }) })
-            .subscribe();
+                 .subscribe();
    }  
    
-getAssetDetailsByCode(empcode : string) : Observable<Request[]>
+getAssetDetailsByCode(empCode : string) : Observable<Request[]>
    {
-      return this.http.get("http://localhost:56622/api/cso/GetAssetDetail/" + empcode)
-       .map(response => response.json());
+     //this method is used to get the asset list 
+      return this.http.get("http://localhost:56622/api/cso/GetAssetDetail/" + empCode)
+                      .map(response => response.json());
    }
    
 }
