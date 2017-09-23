@@ -1,0 +1,101 @@
+<!-- user starts here-->
+<div id="user">
+	<div *ngIf="employee">
+		<!--main jumbotron-->
+		<div class=" jumboMain jumbotron">
+			<!--Inner jumbotron -->
+			<div class=" jumboInner jumbotron">
+				<h3>{{employee.employeeName|titlecase}}</h3>
+				<small>{{employee.designation}} @NIIT</small>
+				<!--profile starts here-->
+				<div class=" profile">
+					<img src="http://walyou.com/wp-content/uploads//2010/12/facebook-profile-picture-no-pic-avatar.jpg" alt="..." class="rounded-circle  img-thumbnail img-fluid">
+				</div>
+				<!--profile ends here-->
+			</div>
+			<!--Inner jumbotron ends here-->
+
+			<!--main content starts here-->
+			<div class="row">
+				<!--detail part-->
+				<div class="col-xs-2 col-lg-4">
+					<!--detail card starts here-->
+					<div class="card details">
+						<!--detail card header-->
+						<div class="usertemp card-header text-white">
+							<p class="h4 h4-responsive"> My Details</p>
+						</div>
+						<!--detail card header ends here-->
+
+						<!--employee details start here-->
+						<ul class="list-group list-group-flush">
+
+							<li class="list-group-item"><span class="spacing-one">Employee ID :</span><span class="space">{{employee.employeeCode}}</span> </li>
+							<li class="list-group-item"> <span class="spacing-one">Email-ID :</span><span class="space">{{employee.employeeEmailId}} </span></li>
+							<li class="list-group-item"><span class="spacing-one"> CC :</span><span class="space">  {{employee.ccCode}}</span></li>
+							<li class="list-group-item"><span class="spacing-one"> OU: </span><span class="space">{{employee.oucode}} </span></li>
+							<li class="list-group-item"> <span class="spacing-one">PA:</span> <span class="space">{{employee.pacode}}</span> </li>
+							<li class="list-group-item"> <span class="spacing-one">PSA:</span> <span class="space">{{employee.psacode}}</span> </li>
+							<li class="list-group-item"><span class="spacing-one"> Location:</span> <span class="space">{{employee.location}}</span></li>
+						</ul>
+						<!--employee details ends here-->
+					</div>
+					<!--card details ends here-->
+				</div>
+				<!--detail ends here-->
+			
+				<!--progress part-->
+				<div class=" col-xs-4 col-lg-8">
+					<!--card details starts-->
+					<div class="card details">
+						<!--card header starts here-->
+						<div class="usertemp card-header text-white ">
+							<p class="h4 h4-responsive"> My Ticket</p>
+						</div>
+						<!--card header ends here-->
+						<div *ngIf="request">
+							<!--ticket details starts here-->
+							<div class="card-text">
+								<!--first row for ticket details-->
+								<div class="row">
+									<div class="ticket-position col-md-8">Ticket No. : &nbsp; &nbsp; {{request.requestId}}</div>
+									<div class="ticket-position col-md-4 ">Status : &nbsp; &nbsp; {{request.pendingWith}}</div>
+
+								</div>
+								<!--first row ends here-->
+								<hr>
+								<!--clearance status starts here-->
+								<div class="card-text">
+									<h4> My Cleareance Status :</h4>
+									<hr>
+									<br>
+									<br>
+									<!--container starts here-->
+									<div class="container">
+										<!--status-->
+										<h1>Completed:{{requestStatus}}</h1>
+										<!--progress bar starts here-->
+										<div class="progress">
+											<div class=" progress-bar progress-bar-striped bg-success progress-bar-animated " role="progressbar" aria-valuenow="75" aria-valuemin="0"
+											 aria-valuemax="100" [ngStyle]=StatusStyle></div>
+										</div>
+										<!--progress bar ends here-->
+										<br>
+                  </div>
+									<!--container ends here-->
+								</div>
+								<!--clearance status ends here-->
+           	</div>
+							<!--ticket details ends here-->
+						</div>
+					</div>
+					<!--card details ends here-->
+				</div>
+				<!--progress part ends here-->
+			</div>
+			<!--main contrnt ends here-->
+		</div>
+		<!--main junmbotron ends here-->
+	</div>
+</div>
+<!--user ends here -->

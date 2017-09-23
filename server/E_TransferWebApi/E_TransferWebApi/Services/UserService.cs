@@ -1,9 +1,5 @@
 ﻿using E_TransferWebApi.Models;
 using E_TransferWebApi.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace E_TransferWebApi.Services
 {
@@ -14,21 +10,24 @@ namespace E_TransferWebApi.Services
     }
     public class UserService : IUserService
     {
-        IEmployeeDetailsRepo _emprepo;
-        IRequestDetailsRepo _reqrepo;
-        public UserService(IEmployeeDetailsRepo emprepo ,IRequestDetailsRepo reqrepo)
+        IEmployeeDetailsRepo _empRepo;
+        IRequestDetailsRepo _reqRepo;
+        public UserService(IEmployeeDetailsRepo empRepo, IRequestDetailsRepo reqRepo)
         {
-            _emprepo = emprepo;
-            _reqrepo = reqrepo;
-        }
-        public RequestDetails GetUserByEmpcode(int code)
-        {
-            return _reqrepo.GetRequestByEmpcode(code);
+            _empRepo = empRepo;
+            _reqRepo = reqRepo;
         }
 
+        //Method for getting Request Details for particular employee code
+        public RequestDetails GetUserByEmpcode(int code)
+        {
+            return _reqRepo.GetRequestByEmpcode(code);
+        }
+
+        //Method for getting Employee details for particular Id
         public EmployeeDetails GetUserDetails(int id)
         {
-            return _emprepo.GetEmployeeById(id);
+            return _empRepo.GetEmployeeById(id);
         }
     }
 }
