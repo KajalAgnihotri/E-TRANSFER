@@ -16,17 +16,16 @@ export class EmployeeListComponent implements OnInit {
   constructor(private supervisorService: SupervisorService,private router:Router) { }
 
   ngOnInit() {
-    console.log("employeeelist.........");
-    this.supervisorService.getEmployeeListBySupervisorID()
-    .subscribe(data => {
-      this.employees = data;
-    });
+    //On initilization of this component this method bring the employee list in this component
+            this.supervisorService.getEmployeeListBySupervisorID()
+                                  .subscribe(data => {this.employees = data;});
   }
 
   sendInfo(emp:Employee){
-      let id=emp.employeeCode;
-      this.supervisorService.filldetailofemployeewanttogeneraterequest(emp);
-      console.log(id+"id sent !!!!!!");
+    //this will feed the employee data in the database
+            let id=emp.employeeCode;
+            this.supervisorService.filldetailofemployeewanttogeneraterequest(emp);
+ 
   }
 
 }

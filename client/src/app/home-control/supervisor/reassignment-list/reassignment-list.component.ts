@@ -28,60 +28,47 @@ mylistofemployee:string[]=[];
   constructor(private assetService:SupervisorService) { }
 
   ngOnInit() {
-    console.log(this.request);
+
     this.assetService.getAsset()
-    .subscribe(asset=>{  this.myassetList=asset;
-    console.log(this.myassetList);this.getmyspecificassetlist(this.myassetList)});
+                     .subscribe(asset=>{  this.myassetList=asset;
+                                          this.getmyspecificassetlist(this.myassetList)});
 
-    this.assetService.getEmployeeListBySupervisorID()
-    .subscribe(data => 
-      {this.employees = data; 
-      this.assetService.getmyemployeehere(this.request.employeeCode)
-                       .then(data =>{ this.myemployeedetail=data;console.log(this.myemployeedetail);
-                      this.getmystringarrayofemployee()})});
-
-   
+    this.assetService.getEmployeeListBySupervisorID().subscribe(data => {this.employees = data; 
+                                                                         this.assetService.getmyemployeehere(this.request.employeeCode)
+                                                     .then(data =>{ this.myemployeedetail=data;
+                                                                    this.getmystringarrayofemployee()})});  
   }
 
- getmyspecificassetlist(assetlist:AssetsData[]){
+  getmyspecificassetlist(assetlist:AssetsData[]){
 
 
-  assetlist.forEach(dhiru => {console.log(dhiru); 
-        console.log(this.request.employeeCode);
-        console.log(dhiru.employeeCode );
-        if(dhiru.employeeCode == this.request.employeeCode)
-        {
-          this.demolist.push(dhiru);
-          console.log("succcccc");
-        }
-        this.assetList=this.demolist;
-      }); 
- }
+              assetlist.forEach(dhiru => {
+                                           if(dhiru.employeeCode == this.request.employeeCode)
+                                             {this.demolist.push(dhiru);}
+                                              this.assetList=this.demolist;}); 
+  }
 
 
 
   getmystringarrayofemployee(){
-      this.employees.forEach(element => {
-        if(element.companyCode == this.myemployeedetail.companyCode){
-          this.mysimilaremployeecode.push(element.employeeCode+element.employeeName)
-        }
-      });
-      console.log(this.mysimilaremployeecode);
+    this.employees.forEach(element => {if(element.companyCode == this.myemployeedetail.companyCode)
+                                       {this.mysimilaremployeecode.push(element.employeeCode+element.employeeName)}
+                                       });
   }
- search(finding){
-    this.mylistofemployee=[];
-        this.mysimilaremployeecode.forEach((myvalue)=>{ if(myvalue.startsWith(finding))
-        {this.mylistofemployee.push(myvalue);}
-      } )       
- }
- gotoDetail(hero){
 
+  search(finding){
+    this.mylistofemployee=[];
+    this.mysimilaremployeecode.forEach((myvalue)=>{ if(myvalue.startsWith(finding))
+                                                      {this.mylistofemployee.push(myvalue);}
+                                                   })       
  }
-  Assign(assignedasset:AssetsData)
-       {
-         this.assetService.assetReallocation(assignedasset);       
-      }
-      GenrateRequest(){
+
+  gotoDetail(hero){
+ }
+
+
+  GenrateRequest(){
+
     this.assetService.generatenewrequest(this.assetList,this.request);
   }
 

@@ -5,8 +5,9 @@ using Moq;
 using E_TransferWebApi.Models;
 using System.Collections.Generic;
 using E_TransferWebApi.Services;
+using Microsoft.EntityFrameworkCore;
 
-namespace XUnitTestProject1
+namespace AssetTestCase
 {
     public class CsoServiceTestcase
     {
@@ -14,13 +15,14 @@ namespace XUnitTestProject1
         public void TestOnGetRequestPendingWithCsoTypeOf()
         {
             //arrange
-            int a = 1;
             var mockRequestRepo = new Mock<IRequestDetailsRepo>();
             var mockAssetRepo = new Mock<IAssetDetailsRepo>();
             var mockEmployeeRepo = new Mock<IEmployeeDetailsRepo>();
             List<RequestDetails> reqdetail = new List<RequestDetails>();
             List<AssetDetails> assetDetail = new List<AssetDetails>();
             List<EmployeeDetails> empDetails = new List<EmployeeDetails>();
+            reqdetail.Add(new RequestDetails() {RequestId=10,DateOfRequest=DateTime.Now,EmployeeCode=20,SupervisorCode=30, pendingWith=Pendingwith.CSO,RequestStatus=Requeststatus.Pending});
+            assetDetail.Add(new AssetDetails() {AssetId=10,AssetCode=20,AssetStatus=status.Accepted,AssignedTo=20,EmployeeCode=20,Quantity=2 });          
             mockRequestRepo.Setup(x => x.GetAllRequest()).Returns(reqdetail);
             mockAssetRepo.Setup(x => x.GetAssetByEmpCode(It.IsAny<int>())).Returns(assetDetail);
             CsoService cso = new CsoService(mockRequestRepo.Object, mockAssetRepo.Object, mockEmployeeRepo.Object);
@@ -32,6 +34,7 @@ namespace XUnitTestProject1
             Assert.IsType(typeof(List<RequestDetails>), result);
             Assert.NotNull(result);
         }
+
 
         [Fact]
         public void TestOnEmailFromCso()
@@ -66,6 +69,8 @@ namespace XUnitTestProject1
 
         }
 
+
+
         [Fact]
         public void TestOnGetRequestPendingWithCsoEquals()
         {
@@ -84,7 +89,7 @@ namespace XUnitTestProject1
             var result = cso.GetRequestPendingWithCso();
 
             //Assert
-            Assert.Equal(reqdetail,result);
+            Assert.Equal(reqdetail, result);
         }
 
         [Fact]
@@ -108,6 +113,7 @@ namespace XUnitTestProject1
             //Assert
             Assert.IsNotType(typeof(int), result);
         }
+
 
         [Fact]
         public void TestOnGetAssetDetailsByEmpcodeIsNotType()

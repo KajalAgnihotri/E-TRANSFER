@@ -25,7 +25,7 @@ import{ ApprovalListComponent} from './home-control/cso-control/approval-list/ap
 
 import{ GlobalUserviewComponent } from './home-control/global-userview/global-userview.component';
 
-import{UserControlComponent} from './home-control/user-control/user-control.component';
+import{UserControlComponent} from './home-control/user-control/user.control.component';
 
 import{AssetControlComponent}from './home-control/asset-control/asset-control.component';
 
@@ -34,7 +34,7 @@ import{AssetControlComponent}from './home-control/asset-control/asset-control.co
 import { SupervisorService } from './home-control/supervisor/supervisor.service';
 import { CsoService } from './home-control/cso-control/cso.service';
 import { HrViewRequestService } from './home-control/humanresource/hr-viewrequest/hr-viewrequest.service';
-import { UserControlService} from './home-control/user-control/user-control.service';
+import { UserControlService} from './home-control/user-control/user.control.service';
 import {GlobalUserService} from './home-control/global-userview/globaluser.service';
 import { AssetControlService} from './home-control/asset-control/asset-control.service';
 

@@ -18,20 +18,16 @@ export class GlobalUserviewComponent implements OnInit {
   ngOnInit() {
     this.globalUser.getMyPendingRequest(this.dummyId).subscribe(data => {
       this.myPendingAssetRequest=data
-      console.log(this.myPendingAssetRequest);
     });
   }
 
   //here this method will get asset id and asset data from html form, for updating the asset status in database and removing the row from html page.
   accept(data) {
-    console.log("data...."+data);
     let id = data.assetId;
-    console.log(id);
     data.assetStatus = 1;
 
     this.globalUser.approve(id,data).then(resp => {
       const index= this.myPendingAssetRequest.indexOf(data);
-      console.log(index);
       this.myPendingAssetRequest.splice(index,1);
     })      
   }
@@ -39,12 +35,10 @@ export class GlobalUserviewComponent implements OnInit {
   //here this method will get asset id and asset data from html form, for updating the asset status in database and removing the row from html page.
   reject(data) {
     let id = data.assetId;
-    console.log(id);
     data.assetStatus = 2;
 
     this.globalUser.reject(id,data).then(resp => {
       const index= this.myPendingAssetRequest.indexOf(data);
-      console.log(index);
       this.myPendingAssetRequest.splice(index,1);
     })
   }

@@ -18,7 +18,7 @@ import{ ApprovalListComponent} from './home-control/cso-control/approval-list/ap
 
 import{ GlobalUserviewComponent } from './home-control/global-userview/global-userview.component';
 
-import{UserControlComponent} from './home-control/user-control/user-control.component';
+import{UserControlComponent} from './home-control/user-control/user.control.component';
 
 import{AssetControlComponent}from './home-control/asset-control/asset-control.component';
 
