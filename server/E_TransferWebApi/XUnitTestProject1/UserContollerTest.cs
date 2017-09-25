@@ -6,7 +6,7 @@ using Moq;
 using System;
 using Xunit;
 
-namespace UserTest
+namespace XUnitTestProject1
 {
      public class UserContollerTest
     {

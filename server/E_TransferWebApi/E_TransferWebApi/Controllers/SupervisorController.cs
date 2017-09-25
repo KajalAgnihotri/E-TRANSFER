@@ -5,127 +5,201 @@ using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using MimeKit;
+using System;
 using System.Collections.Generic;
+using System.Net.Http;
+using Microsoft.AspNetCore.Server.Kestrel;
 
 
 namespace E_TransferWebApi.Controllers
 {
     [Produces("application/json")]
-   // [Route("api/[controller]")]
+    [Route("api/[controller]")]
     public class SupervisorController : Controller
     {
         ISupervisorService _service;
-        IAssetDetailsRepo _assetrepo;
-        public SupervisorController(ISupervisorService service, IAssetDetailsRepo assetrepo)
+       // IAssetDetailsRepo _assetrepo;
+        public SupervisorController(ISupervisorService service)
         {
             _service = service;
-            _assetrepo = assetrepo;
-
-            var builder = new ConfigurationBuilder()
-                .AddJsonFile("config.json", optional: false, reloadOnChange: true);
-            Configuration = builder.Build();
         }
 
-        public IConfigurationRoot Configuration { get; }
+        //Method to get the requests pending with supervisor 
         // GET: api/Supervisor
         [Route("api/[controller]/GetRequest")]
         [HttpGet]
-        public IEnumerable<RequestDetails> GetRequest()
+        public IActionResult GetRequest()
         {
-            return _service.GetAllpendingRequest();
-        }
- 
-        [HttpGet()]
-        [Route("api/[controller]/GetRequestById/{id}")]
-        public RequestDetails GetRequestById(int id)
-        {
-            return _service.GetRequestById(id);
+            try
+            {
+                List<RequestDetails> item = _service.GetAllpendingRequest();
+                if (item.Count == 0)
+                {
+                    return NotFound(404);                  
+                }
+                else
+                    return Ok(item);
+            }
+            catch(Exception)
+            {
+                return StatusCode(500);
+            }
         }
 
+        //Method to get the request by id
         [HttpGet]
-        [Route("api/[controller]/GetAsset")]
-        public IEnumerable<AssetDetails> GetAsset()
+        [Route("api/[controller]/GetRequestById/{id}")]
+        public IActionResult GetRequestById(int id)
         {
-            return _service.Getasset();
+            try
+            {
+                RequestDetails request = _service.GetRequestById(id);
+                if (request == null)
+                {
+                    return NotFound(404);
+                }
+                return Ok(request);              
+            }       
+            catch(Exception)
+            {
+                return StatusCode(500);
+            }
         }
 
-
-        // POST: api/Supervisor
+        //Method to add the new request into the database.
+         //POST: api/Supervisor
         [HttpPost]
         [Route("api/[controller]/PostRequest")]
         public IActionResult PostRequest([FromBody]RequestDetails request)
         {
-           string response=_service.AddRequest(request);
-            return Ok(response);
-
-        }
-
-        // PUT: api/Supervisor/5
-        [HttpPut]
-        [Route("api/[controller]/PutRequest/{id}")]
-        public void PutRequest(int id, [FromBody]RequestDetails request)
-        {
-            _service.EditRequest(id, request);
-        }
-
-        //byassetid
-        [HttpPut]
-        [Route("api/[controller]/PutAsset/{id}")]
-        public void PutAsset(int id, [FromBody]AssetDetails assetlist)
-        {
-            _service.EditAssetById(id, assetlist);
-            EmailToReassignedUser(id, assetlist);
-        }
-        private void EmailToReassignedUser(int id, AssetDetails assetList)
-        {
-            List<AssetDetails> details = new List<AssetDetails>();
-            List<AssetDetails> detaillist = _assetrepo.GetAssetByEmpCode(assetList.EmployeeCode);
-            foreach (AssetDetails del in detaillist)
+            try
             {
-                if (del.EmployeeCode == assetList.EmployeeCode)
+                if (request == null)
                 {
-                    string emailid = del.AssignToEmailId;
-                    int code = del.AssignedTo;
-                    var message = new MimeMessage();
-                    message.From.Add(new MailboxAddress(Configuration["Title"], Configuration["FromEmail"]));
-                    message.To.Add(new MailboxAddress(code.ToString(), emailid));
-                    message.Subject = Configuration["SubjectForSupervisor"];
-                    var bodyBuilder = new BodyBuilder();
-
-                    bodyBuilder.HtmlBody = @"<div> Dear Employer </div><br><br><div>You are being reassigned new assets. Kindly check E-Transfer Portal.</div><br><div> Supervisor</div>";
-                    message.Body = bodyBuilder.ToMessageBody();
-
-                    using (var client = new SmtpClient())
-                    {
-                        client.Connect(Configuration["Domain"], 587, false);
-                        client.Authenticate(Configuration["FromEmail"], Configuration["Password"]);
-                        client.Send(message);
-                        client.Disconnect(true);
-                    }
+                    return  BadRequest(400); //new BadRequestObjectResult(400);
                 }
+                bool response = _service.AddRequest(request); //service call
+                if (response==false)
+                {
+                    return NotFound(404);
+                }
+                return Ok(200);             
+            }
+            catch (Exception)
+            {
+                return StatusCode(500);
             }
         }
 
+        //Method to add the asset of a particular employee at the time of request generation
+        // POST: api/Supervisor/GetAssets
+        [HttpPost]
+        [Route("api/[controller]/PostAsset")]
+        public IActionResult PostAsset([FromBody]List<AssetDetails> asset)
+        {
+            try
+            {
+                if (asset== null)
+                {
+                    return BadRequest(400);
+                }
+                bool response=_service.AddAsset(asset); //service call
+                if (response == false)
+                {
+                    return NotFound(404);
+                }
+                 return Ok(200);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500);
+            }
+        }
 
+        //Method to update the request by the supervisor 
+        // PUT: api/Supervisor/5
+        [HttpPut]
+        [Route("api/[controller]/PutRequest/{id}")]
+        public IActionResult PutRequest(int id, [FromBody]RequestDetails request)
+        {
+            try
+            {
+                if (request == null || request.RequestId != id)
+                {
+                    //Validation that object and id can't be null
+                    return BadRequest(400);
+                }
+                bool response = _service.EditRequest(id, request); //service call
+                if (response == false)
+                {
+                    return NotFound(404);
+                }
+                else
+                {
+                    return Ok(200);
+                }
+            }
+            catch(Exception)
+            {
+                return StatusCode(500);
+            }
+        }
+
+        //Method to add the Updated Asset Reassignment of the Employee who is seeking clearance
+        //byassetid
+        [HttpPut]
+        [Route("api/[controller]/PutAsset/{id}")]
+        public IActionResult PutAsset(int id, [FromBody]AssetDetails assetlist)
+        {
+            try
+            {
+                if (assetlist == null || assetlist.AssetId != id)
+                {
+                    //Validation that object and id can't be null
+                    return BadRequest(400);
+                }
+                bool response = _service.EditAssetById(id, assetlist); //service call
+                if (response == false)
+                {
+                    return NotFound(404);
+                }
+                else
+                {
+                    // _service.EmailToReassignedUser(id, assetlist); //Email to the reassigned employee of the asset
+                    return Ok(200);
+                }
+            }
+            catch(Exception)
+            {
+                return StatusCode(500);
+            }
+        }
+
+       
+        //Method to get the list of assets rejected by the reassigned user 
         //byemployeecode
-        // POSt: api/Supervisor/GetRejectedAssetList
         [HttpPost]
         [Route("api/[controller]/GetRejectedAssetList")]
         public IActionResult GetRejectedAssetList([FromBody]List<int> asset)
         {
-            List<AssetDetails> assetlist = new List<AssetDetails>();
-            assetlist = _service.GetRejectedAssetListByEmpCode(asset);
-            return Ok(assetlist);
+            try
+            {
+                if (asset == null)
+                {
+                    return BadRequest(400);
+                }
+                List<AssetDetails> assetlist = new List<AssetDetails>();
+                assetlist = _service.GetRejectedAssetListByEmpCode(asset); //service call
+                if (assetlist.Count==0)
+                {
+                    return NotFound(404);
+                }
+                return Ok(assetlist);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500);
+            }
         }
-
-        // POST: api/Supervisor/GetAssets
-        [HttpPost]
-        [Route("api/[controller]/PostAsset")]
-        public void PostAsset([FromBody]List<AssetDetails> asset)
-        {
-            _service.AddAsset(asset);
-        }
-
-
     }
 }

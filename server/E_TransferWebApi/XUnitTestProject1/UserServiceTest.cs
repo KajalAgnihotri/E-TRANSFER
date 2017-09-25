@@ -4,7 +4,7 @@ using E_TransferWebApi.Services;
 using Moq;
 using Xunit;
 
-namespace E_Transfer_Test_Cases
+namespace XUnitTestProject1
 {
     public class UsererviceTest
     {
