@@ -1,13 +1,10 @@
 ﻿using E_TransferWebApi.Models;
 using E_TransferWebApi.Repository;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace E_TransferWebApi.Services
 {
@@ -15,14 +12,14 @@ namespace E_TransferWebApi.Services
     {
         //Request Methods
         List<RequestDetails> GetAllpendingRequest();
-        string AddRequest(RequestDetails request);
-        void EditRequest(int id, RequestDetails request);
+        bool AddRequest(RequestDetails request);
+        bool EditRequest(int id, RequestDetails request);
         RequestDetails GetRequestById(int id);
        
         //Asset methods
-        void AddAsset(List<AssetDetails> assetlist);
+        bool AddAsset(List<AssetDetails> assetlist);
         List<AssetDetails> GetRejectedAssetListByEmpCode(List<int> asset);
-        void EditAssetById(int id, AssetDetails assetlist);
+        bool EditAssetById(int id, AssetDetails assetlist);
         List<AssetDetails> Getasset();
 
     }
@@ -36,28 +33,23 @@ namespace E_TransferWebApi.Services
             _assetrepo = asset;
         }
 
-        public void AddAsset(List<AssetDetails> assetlist)
-        {   
+        public bool AddAsset(List<AssetDetails> assetlist)
+        {
+               bool check = false;
                 foreach (AssetDetails asset in assetlist)
                 {
-                    _assetrepo.AddAsset(asset);
+                    check=_assetrepo.AddAsset(asset);
                 }
+            return check;
         }
 
-        public string AddRequest(RequestDetails request)
+        public bool AddRequest(RequestDetails request)
         {
-            request.DateOfRequest = DateTime.Now;
-            List<RequestDetails> checkrequestlist = new List<RequestDetails>();
-            checkrequestlist = _requestrepository.GetAllRequest();
-            foreach(RequestDetails req in checkrequestlist)
-            {
-                if(req.EmployeeCode == request.EmployeeCode)
-                {
-                    return "already exist";
-                }
-            }
-            _requestrepository.AddRequest(request);
-            return "successful";
+            
+                request.DateOfRequest = DateTime.Now;
+               bool check= _requestrepository.AddRequest(request);
+            return check;
+
         }
 
         public void DeleteRequest(int id)
@@ -65,18 +57,16 @@ namespace E_TransferWebApi.Services
             _requestrepository.DeleteRequest(id);
         }
 
-        public void EditAssetById(int id, AssetDetails assetlist)
-        {
-            //foreach (AssetDetails asset in assetlist)
-            //{
-            
-            _assetrepo.EditAsset(id, assetlist);
-            //}
+        public bool EditAssetById(int id, AssetDetails assetlist)
+        {           
+              bool check=_assetrepo.EditAsset(id, assetlist);
+            return check;
         }
 
-        public void EditRequest(int id, RequestDetails request)
+        public bool EditRequest(int id, RequestDetails request)
         {
-            _requestrepository.EditRequest(id, request);
+            bool check=_requestrepository.EditRequest(id, request);
+            return check;
         }
 
         public List<AssetDetails> GetRejectedAssetListByEmpCode(List<int> asset)
@@ -108,7 +98,6 @@ namespace E_TransferWebApi.Services
                 }
             }
             return requestlist;
-            //this function return all pending request
         }
 
         public List<AssetDetails> Getasset()

@@ -6,7 +6,7 @@ using E_TransferWebApi.Models;
 using System.Collections.Generic;
 using E_TransferWebApi.Services;
 
-namespace AssetTestCase
+namespace XUnitTestProject1
 {
     public class CsoServiceTestcase
     {
