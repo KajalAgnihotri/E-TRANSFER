@@ -19,21 +19,18 @@ export class HrViewrequestComponent implements OnInit {
 
   ngOnInit() {
         //This method will get all the pending request via calling HrViewRequstService
-        this.hrViewRequestService.getmypendingrequestList()
+        this.hrViewRequestService.getmypendingrequestlist()
                                  .then(response =>{this.requestList = response;} );
   }
  
   updateStatus(employee){
     //This method will update the status via calling HrViewRequstService
     let id = employee.requestId;
-    console.log(id);
     employee.pendingWith = "Cso";
    
-    this.hrViewRequestService.updateStatus(id, employee).then(data =>{
-    const index= this.requestList.indexOf(employee);
-    console.log(index);
-    this.requestList.splice(index,1);
-    });
+    this.hrViewRequestService.updateStatus(id, employee)
+                             .then(data =>{const index= this.requestList.indexOf(employee);
+                                                        this.requestList.splice(index,1);});
   }
 
   rejectRequest(employee:Request){
@@ -43,13 +40,9 @@ export class HrViewrequestComponent implements OnInit {
 
   sendBack(){
     //This method will send back request to supervisor via calling HrViewRequstService
-    console.log(this.comment);
-    console.log(this.data);
     this.data.pendingWith = "Supervisor";
-    this.hrViewRequestService.sendBack(this.comment,this.data).then(data => {
-      const index= this.requestList.indexOf(this.data);
-      console.log(index);
-      this.requestList.splice(index,1);
+    this.hrViewRequestService.sendBack(this.comment,this.data).then(data => {const index= this.requestList.indexOf(this.data);
+                                                                                          this.requestList.splice(index,1);
     })   
   }
 }

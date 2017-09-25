@@ -10,13 +10,13 @@
 				<div class="col form-group">
 					<div class="row">
 						<label class="col-sm-4 col-form-label"><h6>Employee Id</h6></label>
-						<input type="text" value = {{myemployee.employeeCode}} class="col-sm-8 form-control form-control-primary" placeholder="Employee Id">
+						<input type="text" id="empid" value = {{myemployee.employeeCode}} class="col-sm-8 form-control form-control-primary" placeholder="Employee Id">
 					</div>
 				</div>
 				<div class="col form-group">
 					<div class="row">
 						<label class="col-sm-4 col-form-label"><h6>Employee name</h6></label>
-						<input type="text" value= {{myemployee.employeeName}} class="col-sm-8 form-control" placeholder="Employee name">
+						<input type="text" id='empname' value= {{myemployee.employeeName}} class="col-sm-8 form-control" placeholder="Employee name">
 					</div>
 				</div>
 			</div>
@@ -25,13 +25,13 @@
 				<div class="col form-group">
 					<div class="row">
 						<label class="col-sm-4 col-form-label"><h6>Email</h6></label>
-						<input type="email" value= {{myemployee.employeeEmailId}} class="col-sm-8 form-control" placeholder="name@example.com">
+						<input type="email" id="email" value= {{myemployee.employeeEmailId}} class="col-sm-8 form-control" placeholder="name@example.com">
 					</div>
 				</div>
 				<div class="col form-group">
 					<div class="row">
 						<label class="col-sm-4 col-form-label"><h6>Location</h6></label>
-						<input type="text" value= {{myemployee.location}} class="col-sm-8 form-control" placeholder="Location">
+						<input type="text" id="location" value= {{myemployee.location}} class="col-sm-8 form-control" placeholder="Location">
 					</div>
 				</div>
 			</div>
@@ -46,7 +46,7 @@
 				<div class="col form-group">
 					<div class="row">
 						<label class="col-sm-4 col-form-label"><h6>Company Code</h6></label>
-						<input type="text"value = {{myemployee.companyCode}} class="col-sm-8 form-control" placeholder="Company Code">
+						<input type="text" id="companycode" value = {{myemployee.companyCode}} class="col-sm-8 form-control" placeholder="Company Code">
 					</div>
 				</div>
 			</div>
@@ -133,7 +133,7 @@
 			<div class="clearfix"></div>
 			<div class="row">
 				<div class="col"></div>
-				<button type="submit" class="col-4 btn btn-primary btn-md btn-block btn-responsive" data-toggle="modal" data-target="#myModal" (click)="assignasset()">Assign</button>
+				<button type="submit" id="subbtn" class="col-4 btn btn-primary btn-md btn-block btn-responsive" data-toggle="modal" data-target="#myModal" (click)="assignasset()">Assign</button>
 				<div class="col"></div>
 			</div>
 		</div>

@@ -28,9 +28,10 @@ export class RequestGenerateComponent implements OnInit {
   constructor(private supervisorService: SupervisorService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    
     this.route.paramMap
-    .switchMap((params:ParamMap)=>this.supervisorService.getmyemployeehere(params.get('id')))
-    .subscribe (data =>{ this.myemployee = data;console.log(this.myemployee);});      
+              .switchMap((params:ParamMap)=>this.supervisorService.getmyemployeehere(params.get('id')))
+              .subscribe (data =>{ this.myemployee = data;console.log(this.myemployee);});      
 }
 defaultvalue(){ 
 console.log(this.category);
@@ -66,17 +67,17 @@ else{
 }
 }
 
-assignasset()
-{
-  if(this.newpa == this.myemployee.pacode &&  this.newpsa == this.myemployee.psacode && this.newou == this.myemployee.oucode
+assignasset(){
+
+     if(this.newpa == this.myemployee.pacode &&  this.newpsa == this.myemployee.psacode && this.newou == this.myemployee.oucode
      &&  this.newcc ==this.myemployee.ccCode){
+
         window.alert("oopss already in this deparment, try with other code !!!!!");
     }
-else{
-      this.data =new Request(this.myemployee.employeeCode,this.myemployee.supervisor
-        ,this.category,this.newpa,this.newpsa,this.newou,
-        this.newcc,
-        "pending","HR");  
-        console.log(this.data);}
+     else{
+            this.data =new Request(this.myemployee.employeeCode,this.myemployee.supervisor,
+                                    this.category,this.newpa,this.newpsa,this.newou,this.newcc,
+                                    "pending","HR");
+    }
 }
 }
