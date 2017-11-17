@@ -8,7 +8,7 @@ import { Employee } from '../../model/Employee';
 export class CsoService {
 	request: Request;
     constructor(private http: Http) { }
-    getViewAllRequest() {
+    getViewAllRequest(){
       //this method is used to get data from API to get pending requests
         return this.http.get("http://localhost:56622/api/Cso/GetPendingCsoRequest")
                         .map(response => response.json());

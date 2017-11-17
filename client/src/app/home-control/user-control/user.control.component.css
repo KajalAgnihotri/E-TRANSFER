@@ -1,10 +1,10 @@
 main jumbotron
 .jumboMain{
-    background-image: url('http://t.wallpaperweb.org/wallpaper/computer/1920x1200/The_Heavy_Azor_1920x1200.jpg');
+    background-image: url('http://www.twitrcovers.com/wp-content/uploads/2012/10/Rain-l.jpg');
  }
  /*inner jumbotron*/
  .jumboInner{
-    background-image: url('http://epicwallpaperz.com/wallpaper-hd/polygon-wallpapers-hd-On-wallpaper-hd.png');
+    /* background-image: url('http://epicwallpaperz.com/wallpaper-hd/polygon-wallpapers-hd-On-wallpaper-hd.png'); */
     background-size: cover;
     height:200px;
     margin-bottom: 5%;
@@ -79,5 +79,5 @@ main jumbotron
         margin-bottom: 20px;
     }
     .usertemp{
-        background-color: #44220eb0;        
+        background-color: rgba(15, 9, 80, 0.69);        
     }

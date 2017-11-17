@@ -1,44 +1,43 @@
 
-
+<!--asset controller table starts-->
   <table class="container">
-
-          
-
- <thead>
+    <!--table headings-->
+   <thead>
      <tr>
        <th><h1>S.no</h1></th>
-       <th><h1>Asset Code</h1></th>
-       <th><h1>Asset Description</h1></th>
-       <th><h1>Quantity</h1></th>
        <th><h1>Company Code</h1></th>
-       <th><h1>Cap Date</h1></th>
-       <th><h1>Location</h1></th>
+       <th><h1>Asset Code</h1></th>
+       <th><h1> Description</h1></th>
+       <th><h1>CAP-Date</h1></th>
+       <th><h1>Quantity</h1></th>
        <th><h1>Status</h1></th>
-       
-     </tr>
+       <th><h1>Location</h1></th>
+       </tr>
    </thead>
+   <!--table headings ends here-->
+   <!--table body starts here-->
           <tbody>
+            <!--list of asset data-->
             <tr *ngFor="let list of List ">
           
                       <td>{{list.assetId}}</td>
+                      <td>{{list.companyCode}}</td>
                       <td>{{list.assetCode}}</td>
                       <td>{{list.description}}</td>
-                      <td>{{list.quantity}}</td>
-                      <td>{{list.companyCode}}</td>
                       <td>{{list.capitalisationDate}}</td>
+                      <td>{{list.quantity}}</td>
+                      <td>{{list.assetStatus}}</td>
                       <td>{{list.location}}</td>
-                       <td>{{list.assetStatus}}</td>
-                       <!-- <div *ngIf -->
-                        
-                       </tr>
+                      </tr>
 
                 </tbody>
-
-              </table>
+                <!--list of asset data-->
+               </table>
+               <!-- asset controoler table ends here--> 
           
 
 
        
               
-            <!-- </div> -->
+            
     

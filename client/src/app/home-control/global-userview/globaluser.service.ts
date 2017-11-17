@@ -19,14 +19,14 @@ export class GlobalUserService {
   }	
 		
 	// here this method will get asset id and asset data when called by component, for updating the asset status in database.
-  approve(id:number , reassignment:AssetsData):Promise<any> {
+  approve(id:number , reassignment:AssetsData){
     return this.http.put('http://localhost:56622/api/AssetAssignedUser/'+id,reassignment,
-                         {headers: new Headers({'Content-Type':'application/json'})}).toPromise();                        
+                         {headers: new Headers({'Content-Type':'application/json'})});                        
 	}
 	
 	// here this method will get asset id and asset data when called by component, for updating the asset status in database. 
-  reject(id:number , reassignment:AssetsData):Promise<any> {                  
+  reject(id:number , reassignment:AssetsData){                  
     return this.http.put('http://localhost:56622/api/AssetAssignedUser/'+id,reassignment,
-                         {headers: new Headers({'Content-Type':'application/json'})}).toPromise();          
+                         {headers: new Headers({'Content-Type':'application/json'})});          
   }
 }

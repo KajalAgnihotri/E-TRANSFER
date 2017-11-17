@@ -26,7 +26,7 @@ export class GlobalUserviewComponent implements OnInit {
     let id = data.assetId;
     data.assetStatus = 1;
 
-    this.globalUser.approve(id,data).then(resp => {
+    this.globalUser.approve(id,data).toPromise().then(response => response.json()).then(resp => {
       const index= this.myPendingAssetRequest.indexOf(data);
       this.myPendingAssetRequest.splice(index,1);
     })      
@@ -37,7 +37,7 @@ export class GlobalUserviewComponent implements OnInit {
     let id = data.assetId;
     data.assetStatus = 2;
 
-    this.globalUser.reject(id,data).then(resp => {
+    this.globalUser.reject(id,data).toPromise().then(response => response.json()).then(resp => {
       const index= this.myPendingAssetRequest.indexOf(data);
       this.myPendingAssetRequest.splice(index,1);
     })

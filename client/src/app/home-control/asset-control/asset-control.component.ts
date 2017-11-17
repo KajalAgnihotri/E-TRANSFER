@@ -9,14 +9,14 @@ import { AssetControlService } from './asset-control.service';
 })
 export class AssetControlComponent implements OnInit {
 
-  constructor(private assetservice:AssetControlService) { }
-  List:AssetsData[];
+  constructor(private assetservice:AssetControlService) { } //instance of assetservice
+  List:AssetsData[]; //array for storing asset data
 
+  /*excutes at the time of component loading*/
   ngOnInit() {
-    console.log("calllllleddddddd...");
-   this.assetservice.GetAssetList()
-       .then(assetList => { this.List=assetList;
-      console.log(this.List)})
+    this.assetservice.GetAssetList()  //calls the service method to return assets list
+   .toPromise().then(response => response.json()) //convert the observable returned by service to promise
+       .then(assetList => { this.List=assetList;}) // put the value returned into list
   }
 }
 

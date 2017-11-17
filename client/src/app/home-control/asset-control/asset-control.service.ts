@@ -8,8 +8,8 @@ import { AssetsData } from '../../model/asset';
 export class AssetControlService {
     constructor(private http: Http) { }
 
-    //To Get The List Of All The Assets.
-    GetAssetList():Promise<AssetsData[]> {
-        return this.http.get("http://localhost:56622/api/Asset").toPromise().then(response => response.json());
+    //To Get The List Of All The Assets from web api.
+    GetAssetList() {
+        return this.http.get("http://localhost:56622/api/Asset").map(response=>response.json());
     }
 }

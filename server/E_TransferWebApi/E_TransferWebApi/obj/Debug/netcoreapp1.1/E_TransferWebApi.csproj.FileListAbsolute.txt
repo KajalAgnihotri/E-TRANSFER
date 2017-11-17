@@ -8,3 +8,9 @@ C:\Users\Training\source\repos\E_TransferWebApi\E_TransferWebApi\obj\Debug\netco
 C:\Users\Training\source\repos\E_TransferWebApi\E_TransferWebApi\obj\Debug\netcoreapp1.1\E_TransferWebApi.dll
 C:\Users\Training\source\repos\E_TransferWebApi\E_TransferWebApi\obj\Debug\netcoreapp1.1\E_TransferWebApi.pdb
 C:\Users\Training\source\repos\E_TransferWebApi\E_TransferWebApi\obj\Debug\netcoreapp1.1\E_TransferWebApi.csprojResolveAssemblyReference.cache
+C:\Users\Training\Desktop\development\server\E_TransferWebApi\E_TransferWebApi\obj\Debug\netcoreapp1.1\E_TransferWebApi.csprojResolveAssemblyReference.cache
+C:\Users\Training\Desktop\development\server\E_TransferWebApi\E_TransferWebApi\obj\Debug\netcoreapp1.1\E_TransferWebApi.csproj.CoreCompileInputs.cache
+C:\Users\Training\Desktop\development\server\E_TransferWebApi\E_TransferWebApi\obj\Debug\netcoreapp1.1\E_TransferWebApi.AssemblyInfoInputs.cache
+C:\Users\Training\Desktop\development\server\E_TransferWebApi\E_TransferWebApi\obj\Debug\netcoreapp1.1\E_TransferWebApi.AssemblyInfo.cs
+C:\Users\Training\Desktop\development\server\E_TransferWebApi\E_TransferWebApi\obj\Debug\netcoreapp1.1\E_TransferWebApi.dll
+C:\Users\Training\Desktop\development\server\E_TransferWebApi\E_TransferWebApi\obj\Debug\netcoreapp1.1\E_TransferWebApi.pdb
